@@ -1,0 +1,116 @@
+/* 모두의기사 2판 — 통사 base.css 위에 얹는 화면 공용 규칙.
+   색은 base.css 변수로만 쓴다. 여기서 색을 박으면 다른 스킨이 깨진다. */
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased}
+.page{max-width:720px;margin:0 auto;padding:0 18px 110px}
+
+/* 위 브랜드 줄 — 통사와 같다 */
+.gbar{position:sticky;top:0;z-index:20;background:var(--nav-bg,var(--bg));
+  border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+.gbar a{display:flex;align-items:center;gap:9px;max-width:720px;margin:0 auto;
+  padding:14px 18px;color:var(--ink);text-decoration:none;font-weight:800;font-size:17px;
+  letter-spacing:-.02em}
+.gbar i{width:11px;height:11px;border-radius:3px;background:var(--accent)}
+
+/* 아래 탭 */
+.gtabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;
+  grid-template-columns:repeat(5,1fr);background:var(--nav-bg,var(--bg));
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.gtabs a{padding:14px 0 15px;text-align:center;font-size:15px;font-weight:700;
+  color:var(--ink-4);text-decoration:none}
+.gtabs a.on{color:var(--ink)}
+.gtabs a.on::after{content:"";display:block;width:22px;height:3px;border-radius:2px;
+  margin:6px auto 0;background:var(--accent)}
+
+/* 공용 단추 */
+.b{appearance:none;display:flex;align-items:center;justify-content:center;
+  width:100%;box-sizing:border-box;border:1.5px solid var(--line-2);background:var(--surface);
+  color:var(--ink);border-radius:var(--r3);padding:16px 18px;font:inherit;font-size:17px;
+  font-weight:800;text-decoration:none;cursor:pointer}
+.b.main{background:var(--accent);border-color:var(--accent);color:#fff}
+.b:active{transform:translateY(1px)}
+.b2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.b2 .b{font-size:15.5px;padding:14px 10px;font-weight:700}
+
+.lab{font-size:14.5px;color:var(--ink-3);font-weight:700;margin:26px 2px 10px}
+.chip{display:inline-block;font-size:12.5px;font-weight:800;padding:2px 8px;
+  border-radius:99px;border:1px solid var(--line-2);color:var(--ink-3)}
+.chip.S{border-color:var(--accent);color:var(--accent)}
+.bar{height:6px;border-radius:99px;background:var(--surface-3);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent)}
+.fold{border:1px solid var(--line-2);border-radius:var(--r3);background:var(--surface);
+  margin-bottom:10px}
+.fold summary{list-style:none;cursor:pointer;padding:17px 18px;font-weight:700;font-size:16px;
+  display:flex;justify-content:space-between;align-items:center}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary::after{content:"⌄";color:var(--ink-4);font-size:18px}
+.fold[open] summary::after{content:"⌃"}
+.fold .in{padding:0 18px 16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.row b{font-variant-numeric:tabular-nums}
+.none{padding:48px 10px;text-align:center;color:var(--ink-3);font-size:15px;line-height:1.8}
+@media(max-width:520px){ .b{font-size:16px} }
+
+/* ── 모두의 통과 — 서문 책자 진녹(#3A6036)을 강조색으로. 오답만 빨강(통사 규칙) ── */
+:root,:root[data-skin]{--accent:#3A6036;--tg-gold:#E6CC84;--tg-beige:#FCF8EA;--tg-soft:#EAF0E6}
+:root:not([data-skin]){--accent:#8BC17F;--tg-soft:rgba(139,193,127,.14);--tg-beige:rgba(230,204,132,.10)}
+.gbar i{background:var(--tg-gold);outline:3px solid var(--accent)}
+
+/* 개념 · 드릴 칸 (kan.js) */
+.kh{font-size:17px;margin:26px 0 10px;letter-spacing:-.02em;display:flex;gap:8px;align-items:center}
+.kh::before{content:"";width:4px;height:16px;border-radius:2px;background:var(--tg-gold)}
+.kp{font-size:22px;margin:34px 0 4px}.kp small{font-size:14px;color:var(--ink-3);font-weight:600}
+.kt{overflow-x:auto;border:1px solid var(--line-2);border-radius:var(--r2)}
+.kt table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.55}
+.kt thead th{background:var(--accent);color:#fff;font-weight:800;text-align:left;padding:8px 10px;white-space:nowrap}
+.kt tbody th{background:var(--tg-soft);color:var(--accent);text-align:left;padding:8px 10px;font-weight:800;white-space:nowrap}
+.kt td{padding:8px 10px;border-top:1px solid var(--line)}
+.kt tbody th{border-top:1px solid var(--line)}
+.kf{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.kf li{flex:1 1 130px;background:var(--tg-soft);border-radius:var(--r2);padding:10px 12px;position:relative}
+.kf li b{display:block;color:var(--accent);font-size:15px}
+.kf li span{font-size:13.5px;color:var(--ink-2)}
+.kl,.kn{margin:10px 0;padding:6px 0 6px 12px;border-left:3px solid var(--tg-gold);font-size:15px;line-height:1.65}
+.kn{border-left:0;padding-left:2px;color:var(--ink-2);font-size:14px}
+.kl b,.kt b{color:var(--accent)}
+.kx{list-style:none;padding:12px 14px;margin:0;background:var(--tg-beige);border:1px solid var(--tg-gold);border-radius:var(--r2)}
+.kx li{display:flex;gap:10px;padding:8px 0;font-size:15px;line-height:1.6;border-top:1px solid var(--line)}
+.kx li:first-child{border-top:0}
+.kx i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:900;font-size:12px;background:var(--accent);margin-top:1px}
+.kx li.x i{background:var(--red)}
+.kx .fix{color:var(--accent)} .kx small{color:var(--ink-4);font-size:12px;white-space:nowrap}
+.kb{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+.kb div{background:var(--tg-soft);border-radius:var(--r2);padding:10px 4px;text-align:center}
+.kb div.soft{background:var(--tg-beige);border:1px solid var(--tg-gold)}
+.kb small{display:block;font-size:13px;font-weight:700}.kb b{display:block;font-size:24px;color:var(--accent)}
+.kb span{font-size:12px;color:var(--ink-3)}
+.kd{width:100%;background:#fff;border-radius:var(--r2)}
+.kq{padding-left:22px;font-size:15.5px;line-height:1.8}
+.kq u{text-decoration:none;border-bottom:1.5px solid var(--accent);padding:0 10px}
+.kq2{display:flex;flex-wrap:wrap;gap:8px}
+.kq2 span{background:var(--tg-soft);border-radius:99px;padding:6px 12px;font-weight:700;font-size:14.5px}
+.kans{margin:4px 0 8px}.kans summary{cursor:pointer;color:var(--accent);font-size:13.5px;font-weight:800}
+.kans div{padding:6px 10px;background:var(--tg-beige);border-radius:8px;font-size:14.5px;line-height:1.7}
+/* 시험지 그림 */
+.fig{display:block;width:100%;background:#fff;border:1px solid var(--line-2);border-radius:var(--r2)}
+.pick5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:14px 0}
+.pick5 button{appearance:none;border:1.5px solid var(--line-2);background:var(--surface);border-radius:var(--r1);
+  padding:12px 0;font:inherit;font-size:20px;font-weight:800;cursor:pointer;color:var(--ink)}
+.pick5 button.ok{border-color:var(--accent);background:var(--tg-soft);color:var(--accent)}
+.pick5 button.no{border-color:var(--red);color:var(--red)}
+.gtabs a{font-size:14px}
+
+/* 0925 판정소 3차 확정 — 오답 #E5322D 통일 · 등급 칩 S노랑 A빨강 B파랑 C진회색 · 추천은 강추 알약 */
+:root,:root[data-skin]{--red:#E5322D}
+.chip.S{background:#FFD43B;border-color:#FFD43B;color:#1F2A1E}
+.chip.A{background:#E5322D;border-color:#E5322D;color:#fff}
+.chip.B{background:#2F6FDB;border-color:#2F6FDB;color:#fff}
+.chip.C{background:#4A4F55;border-color:#4A4F55;color:#fff}
+.gc{display:inline-block;margin-left:6px;background:#E5322D;color:#fff;font-size:12px;font-weight:900;
+  padding:2px 8px;border-radius:99px;vertical-align:2px}
+/* 폰 폭 — 넓은 도해·표는 가로로 밀어 본다(글자가 작아지거나 칸이 세로로 꺾이지 않게) */
+.kdw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.kdw .kd{min-width:640px}
+.kt td{min-width:76px}
+.kt tbody th{min-width:60px}
