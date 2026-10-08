@@ -8,28 +8,45 @@
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/g.css">
 <script>try{var _s=localStorage.getItem("modutg2.skin")||"white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
+<!-- 킬러 드릴 (2026-10-08 개편, 대표님 「눈으로 풀 수 없는 문항을 문제은행처럼 적어 놓으면 훈련이 안 됨.
+     한 문제씩 단계별로 풀게 하되, 막히면 힌트」)
+     한 화면에 한 문제. 단계 문제는 걸음마다 묻고 → 힌트 → 답 확인 → 다음 걸음 → 끝에 ①~⑤.
+     기출 모음 문제는 ①~⑤ 고르기, 막히면 풀이 순서 힌트, 고른 뒤 해설. 풀이 도구(표)는 접어서 맨 아래. -->
 <style>
-  .hd h1{font-size:26px;letter-spacing:-.03em;margin:26px 0 4px;font-weight:900}
+  .hd h1{font-size:25px;letter-spacing:-.03em;margin:22px 0 6px;font-weight:900;line-height:1.3}
   .hd p{margin:0;color:var(--ink-3);font-size:14.5px;line-height:1.6}
-  .tag{display:inline-block;background:var(--tg-gold);color:#3A6036;font-weight:900;font-size:12px;
+  .tag{display:inline-block;background:var(--tg-gold);color:#3A6036;font-weight:900;font-size:13.5px;
     padding:3px 8px;border-radius:6px;letter-spacing:.04em}
   .topic{display:block;border:1.5px solid var(--line-2);border-radius:var(--r3);padding:18px;margin-top:14px;
     text-decoration:none;color:inherit;background:var(--surface)}
   .topic b{display:block;font-size:18px;margin:8px 0 4px}
-  .topic small{color:var(--ink-3);font-size:14px}
-  .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:20px 0 6px}
-  .tabs button{appearance:none;border:1.5px solid var(--line-2);background:var(--surface-2);border-radius:var(--r1);
-    padding:11px 4px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;color:var(--ink-2)}
-  .tabs button.on{border-color:var(--accent);color:var(--accent);background:var(--tg-soft)}
-  .stp{list-style:none;padding:0;margin:14px 0 0;counter-reset:s}
-  .stp li{background:var(--tg-soft);border-radius:var(--r2);padding:12px 14px 12px 46px;margin-bottom:8px;
-    position:relative;font-size:15.5px;line-height:1.6;counter-increment:s}
-  .stp li::before{content:counter(s);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:50%;
-    background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;font-size:13px}
-  .card{border:1px solid var(--line-2);border-radius:var(--r2);padding:14px;margin-top:16px;background:var(--surface)}
-  .card .y{font-size:13.5px;color:var(--ink-3);font-weight:700;margin-bottom:8px}
-  .fb{font-size:15px;font-weight:800;margin:4px 0 8px}
+  .topic small{color:var(--ink-3);font-size:14.5px}
+  .topic .tbar{height:6px;border-radius:99px;background:var(--line);margin-top:12px;overflow:hidden}
+  .topic .tbar i{display:block;height:100%;background:var(--accent)}
+
+  .prog{display:flex;align-items:center;gap:10px;margin:18px 0 12px;font-size:14.5px;font-weight:800;color:var(--ink-3)}
+  .prog .tr{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+  .prog .tr i{display:block;height:100%;background:var(--accent);transition:width .3s}
+  .qsrc{font-size:14px;color:var(--ink-3);font-weight:700;margin:0 0 8px}
+
+  .step{border:1.5px solid var(--accent);border-radius:var(--r2);background:var(--surface);padding:16px;margin-top:14px}
+  .step .no{font-size:13.5px;font-weight:900;color:var(--accent);letter-spacing:.02em}
+  .step .q{font-size:17px;font-weight:800;line-height:1.6;margin:6px 0 12px}
+  .done-step{border:1px solid var(--line-2);border-radius:var(--r2);background:var(--tg-soft);padding:10px 14px;margin-top:8px;
+    font-size:14.5px;line-height:1.6}
+  .done-step b{display:block;color:var(--ink-3);font-size:13.5px;font-weight:800}
+  .hint{background:var(--tg-beige);border-radius:10px;padding:10px 12px;font-size:15px;line-height:1.65;margin:0 0 10px}
+  .hint b{color:var(--ink-2)}
+  .ans{background:var(--tg-soft);border-left:4px solid var(--accent);border-radius:8px;padding:10px 12px;font-size:16px;font-weight:800;line-height:1.6;margin:0 0 10px}
+  .acts2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .acts2 .b{margin:0}
+  .fb{font-size:16px;font-weight:900;margin:4px 0 10px}
   .fb.ok{color:var(--accent)} .fb.no{color:var(--red)}
+  .pick-lb{font-size:15px;font-weight:800;margin:18px 0 0}
+  .tools{margin-top:26px}
+  .endbox{text-align:center;padding:30px 0 10px}
+  .endbox .big{font-size:34px;font-weight:900;letter-spacing:-.03em}
+  .endbox p{color:var(--ink-3);font-size:15px;margin:6px 0 20px}
 </style>
 </head><body>
 <div class="page">
@@ -40,58 +57,117 @@
 <script src="js/gdata.js"></script>
 <script src="js/gstore.js"></script>
 <script src="js/kan.js"></script>
+<script src="js/drillhint.js"></script>
 <script>
 (function(){
   GS.내비("drill.html");
   var D=GS.D, e=GS.esc, P=new URLSearchParams(location.search), k=P.get("k");
   var 몸=document.getElementById("body"), 번="①②③④⑤";
+  var 힌트=window.DRILL_HINT||{};
+  /* 진행 기록 — 드릴마다 푼 문제 번호와 맞힘 */
+  var KEY="modutg2.drillrun";
+  function 읽기(){ try{ return JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(_){ return {}; } }
+  function 쓰기(o){ try{ localStorage.setItem(KEY,JSON.stringify(o)); }catch(_){ } }
+  function 정답번호(a){ if(typeof a==="number") return a; var i=번.indexOf(String(a||"").trim().charAt(0)); return i>=0?i+1:Number(a)||0; }
+
   var 주=(D.drill||[]).filter(function(d){return d.k===k;})[0];
   if(!주){
+    var R0=읽기();
     몸.innerHTML=(D.drill||[]).map(function(d){
+      var 수=d.단계.length+d.모음.length, r=R0[d.k]||{}, 푼=Object.keys(r.p||{}).length;
       return '<a class="topic" href="drill.html?k='+encodeURIComponent(d.k)+'"><span class="tag">KILLER DRILL</span>'+
-        '<b>'+e(d.n)+'</b><small>'+e(d.s)+' · 단계 쪼개기 '+d.단계.length+' · 기출 '+d.모음.length+'문항</small></a>';
+        '<b>'+e(d.n)+'</b><small>'+e(d.s)+', 단계 풀이 '+d.단계.length+'문제 + 기출 '+d.모음.length+'문제</small>'+
+        '<div class="tbar"><i style="width:'+Math.round(푼/수*100)+'%"></i></div></a>';
     }).join("");
     return;
   }
   document.getElementById("ttl").textContent=주.n;
   document.getElementById("sub").innerHTML='<span class="tag">KILLER DRILL</span> '+e(주.s);
-  var 판={
-    틀:function(){ return KAN.그리기(주.틀); },
-    단계:function(){
-      return 주.단계.map(function(d,j){
-        return '<div class="card"><div class="y">단계 쪼개기 '+(j+1)+' · '+e(d.y)+'</div>'+
-          (d.img?'<img class="fig" src="'+d.img+'" alt="기출">':'')+
-          '<ol class="stp">'+d.걸음.map(function(g){
-            return '<li>'+KAN.글(g[0])+'<details class="kans"><summary>답 보기</summary><div>'+KAN.글(g[1])+'</div></details></li>';
-          }).join("")+'</ol><details class="kans"><summary>정답</summary><div>'+e(d.a)+'</div></details></div>';
-      }).join("");
-    },
-    모음:function(){
-      return 주.모음.map(function(x,j){
-        return '<div class="card" data-a="'+(x.a||"")+'"><div class="y">드릴 '+(j+1)+' · '+e(x.y)+'</div>'+
-          '<img class="fig" src="'+x.img+'" alt="기출">'+
-          '<div class="pick5">'+[1,2,3,4,5].map(function(n){return '<button data-n="'+n+'">'+번[n-1]+'</button>';}).join("")+'</div>'+
-          '<div class="res"></div>'+(x.h?'<details class="kans"><summary>해설 원문</summary><img class="fig" src="'+x.h+'" alt="해설"></details>':'')+'</div>';
-      }).join("");
-    }
-  };
-  function 보기(이름){
-    몸.innerHTML='<div class="tabs">'+[["틀","풀이 틀"],["단계","단계 쪼개기"],["모음","기출 모음"]].map(function(t){
-      return '<button data-t="'+t[0]+'"'+(t[0]===이름?' class="on"':'')+'>'+t[1]+'</button>';}).join("")+'</div>'+판[이름]();
-    몸.querySelectorAll(".tabs button").forEach(function(b){ b.onclick=function(){ 보기(b.dataset.t); window.scrollTo({top:0}); }; });
-    몸.querySelectorAll(".card[data-a]").forEach(function(c){
-      var a=Number(c.dataset.a);
-      c.querySelectorAll(".pick5 button").forEach(function(b){
-        b.onclick=function(){
-          var n=Number(b.dataset.n);
-          c.querySelectorAll(".pick5 button").forEach(function(x){x.disabled=true; if(Number(x.dataset.n)===a) x.classList.add("ok");});
-          if(n!==a) b.classList.add("no");
-          c.querySelector(".res").innerHTML='<p class="fb '+(n===a?"ok":"no")+'">'+(n===a?"○ 정답":"✕ 정답 "+번[a-1])+'</p>';
-        };
-      });
+
+  /* 문제 줄 — 단계 풀이 문제 먼저, 그다음 기출 모음 */
+  var 줄=주.단계.map(function(d,j){ return {kind:"단계",j:j,d:d}; })
+    .concat(주.모음.map(function(x,j){ return {kind:"모음",j:j,d:x}; }));
+  var 순서=(주.틀||[]).filter(function(t){ return /풀이 순서/.test(t.제목||""); });
+  var R=읽기(), 내=R[주.k]=R[주.k]||{p:{}}, 지금=Number(P.get("n"));
+  if(!(지금>=0&&지금<줄.length)){ 지금=0; while(지금<줄.length&&내.p[지금]!=null) 지금++; if(지금>=줄.length) 지금=0; }
+
+  function 도구(){
+    return '<details class="fold tools"><summary>풀이 도구 (표)</summary><div class="in">'+KAN.그리기(주.틀)+'</div></details>';
+  }
+  function 진행(){
+    var 푼=Object.keys(내.p).length;
+    return '<div class="prog"><span>'+(지금+1)+' / '+줄.length+'</span><div class="tr"><i style="width:'+Math.round(푼/줄.length*100)+'%"></i></div><span>'+푼+'문제 끝</span></div>';
+  }
+  function 기록(맞){ 내.p[지금]=맞?1:0; 쓰기(R); }
+  function 다음(){
+    if(지금+1>=줄.length){ 끝(); return; }
+    지금++; 그리기(); window.scrollTo({top:0});
+  }
+  function 끝(){
+    var 맞=Object.keys(내.p).filter(function(i){ return 내.p[i]; }).length;
+    몸.innerHTML='<div class="endbox"><div class="big num">'+맞+' / '+줄.length+'</div><p>'+e(주.n)+' 한 바퀴 끝</p>'+
+      '<a class="b main" id="again">처음부터 다시</a><a class="b" href="drill.html" style="margin-top:10px">다른 유형</a></div>'+도구();
+    document.getElementById("again").onclick=function(){ 내.p={}; 쓰기(R); 지금=0; 그리기(); window.scrollTo({top:0}); };
+  }
+
+  function 고르기(host, a, 해설){
+    host.innerHTML='<div class="pick5">'+[1,2,3,4,5].map(function(n){return '<button data-n="'+n+'">'+번[n-1]+'</button>';}).join("")+'</div><div class="res"></div>';
+    host.querySelectorAll(".pick5 button").forEach(function(b){
+      b.onclick=function(){
+        var n=Number(b.dataset.n);
+        host.querySelectorAll(".pick5 button").forEach(function(x){ x.disabled=true; if(Number(x.dataset.n)===a) x.classList.add("ok"); });
+        if(n!==a) b.classList.add("no");
+        기록(n===a);
+        host.querySelector(".res").innerHTML='<p class="fb '+(n===a?"ok":"no")+'">'+(n===a?"○ 정답":"✕ 정답 "+번[a-1])+'</p>'+
+          (해설?'<details class="fold"><summary>해설</summary><div class="in"><img class="fig" src="'+해설+'" alt="해설"></div></details>':'')+
+          '<a class="b main" id="nx" style="margin-top:12px">'+(지금+1>=줄.length?"결과 보기":"다음 문제")+'</a>';
+        document.getElementById("nx").onclick=다음;
+      };
     });
   }
-  보기(P.get("t")||"틀");
+
+  function 그리기(){
+    var it=줄[지금], d=it.d;
+    if(it.kind==="모음"){
+      몸.innerHTML=진행()+'<p class="qsrc">기출, '+e(d.y)+'</p><img class="fig" src="'+d.img+'" alt="기출 문항">'+
+        (순서.length?'<div id="hb" style="margin-top:12px"><a class="b" id="hint">힌트, 풀이 순서</a></div>':'')+
+        '<p class="pick-lb">답 고르기</p><div id="pk"></div>'+도구();
+      var hb=document.getElementById("hint");
+      if(hb) hb.onclick=function(){ document.getElementById("hb").innerHTML='<div class="hint">'+KAN.그리기(순서)+'</div>'; };
+      고르기(document.getElementById("pk"), 정답번호(d.a), d.h);
+      return;
+    }
+    /* 단계 풀이 문제 — 걸음을 하나씩 */
+    var 힌=(힌트[주.k]||[])[it.j]||[], g=0;
+    몸.innerHTML=진행()+'<p class="qsrc">단계 풀이, '+e(d.y)+'</p>'+(d.img?'<img class="fig" src="'+d.img+'" alt="기출 문항">':'')+
+      '<div id="past"></div><div id="cur"></div>'+도구();
+    function 걸음(){
+      var cur=document.getElementById("cur");
+      if(g>=d.걸음.length){
+        cur.innerHTML='<p class="pick-lb">이제 답 고르기</p><div id="pk"></div>';
+        고르기(document.getElementById("pk"), 정답번호(d.a), null);
+        return;
+      }
+      var s=d.걸음[g];
+      cur.innerHTML='<div class="step"><div class="no">'+(g+1)+'단계 / '+d.걸음.length+'</div><div class="q">'+KAN.글(s[0])+'</div>'+
+        '<div id="hs"></div><div id="as"></div>'+
+        '<div class="acts2" id="ab">'+(힌[g]?'<a class="b" id="hb">힌트</a>':'<span></span>')+'<a class="b main" id="sb">답 확인</a></div></div>';
+      var hb=document.getElementById("hb");
+      if(hb) hb.onclick=function(){ document.getElementById("hs").innerHTML='<div class="hint"><b>힌트</b> '+e(힌[g])+'</div>'; hb.style.visibility="hidden"; };
+      document.getElementById("sb").onclick=function(){
+        document.getElementById("as").innerHTML='<div class="ans">'+KAN.글(s[1])+'</div>';
+        document.getElementById("ab").innerHTML='<span></span><a class="b main" id="nb">'+(g+1>=d.걸음.length?"답 고르러 가기":"다음 단계")+'</a>';
+        document.getElementById("nb").onclick=function(){
+          document.getElementById("past").insertAdjacentHTML("beforeend",
+            '<div class="done-step"><b>'+(g+1)+'단계</b>'+KAN.글(s[0])+' → '+KAN.글(s[1])+'</div>');
+          g++; 걸음();
+          var c=document.getElementById("cur"); if(c) c.scrollIntoView({block:"start",behavior:"smooth"});
+        };
+      };
+    }
+    걸음();
+  }
+  그리기();
 })();
 </script>
 </body></html>
