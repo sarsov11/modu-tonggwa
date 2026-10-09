@@ -182,7 +182,12 @@
         '<div class="tally"><div><b>'+맞+'/'+결과.length+'</b><span>맞힘</span></div>'+
           '<div><b>'+오개념+'</b><span>확신 오답</span></div>'+
           '<div><b>'+(m==null?"—":Math.round(m*100)+"%")+'</b><span>이 단원</span></div></div>'+
-        '<a class="b main" href="index.html">홈</a>'+
+        /* ★ 결과 뒤에 고르게 하지 않는다 — 오늘 할 것 다음 하나를 큰 단추로(2026-10-09 흐름 점검: 주 단추가 「홈」 뿐이었다) */
+        (function(){ var nx=GS.오늘할것&&GS.오늘할것();
+          if(nx && !(nx.k && nx.k===k)) return '<a class="b main" href="'+(nx.k?'ox.html?k='+encodeURIComponent(nx.k):'ox.html?review=1')+'">다음: '+e(nx.이름)+(nx.n?' '+nx.n+'개':'')+' →</a>'+
+            '<a class="b" href="index.html">홈</a>';
+          if(nx) return '<a class="b main" href="card.html?k='+encodeURIComponent(k)+'">개념 보고 다시: '+e(nx.이름)+' →</a><a class="b" href="index.html">홈</a>';
+          return '<a class="b main" href="index.html">홈</a>'; })()+
         (k?'<div class="b2"><a class="b" href="ox.html?k='+encodeURIComponent(k)+'">다시</a>'+
           '<a class="b" href="card.html?k='+encodeURIComponent(k)+'">개념</a></div>':'')+
       '</div>';
