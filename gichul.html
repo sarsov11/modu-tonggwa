@@ -32,9 +32,11 @@
   if(!xs.length){ 몸.innerHTML='<div class="none">기출 없음<br><a href="tree.html">다른 단원 학습</a></div>'; return; }
   var i=0, 맞=0;
   function 그리기(){
+    window.ZZ && ZZ.quiet && ZZ.quiet(700);
     if(i>=xs.length){
       몸.innerHTML='<div class="none"><b style="font-size:22px;color:var(--ink)">'+맞+' / '+xs.length+'</b></div>'+
         '<a class="b main" href="ox.html?k='+encodeURIComponent(k)+'">O·X</a>';
+      if(window.ZZ){ var r=맞/xs.length; if(r>=1) ZZ.stars(3); else if(r>=0.7) ZZ.stars(2); else if(r>=0.4) ZZ.stars(1); }
       return;
     }
     var x=xs[i];
@@ -47,9 +49,10 @@
         var n=Number(b.dataset.n), ok=(n===x.a); if(ok) 맞++;
         몸.querySelectorAll(".pick5 button").forEach(function(y){y.disabled=true; if(Number(y.dataset.n)===x.a) y.classList.add("ok");});
         if(!ok) b.classList.add("no");
+        if(window.ZZ) (ok ? ZZ.ok : ZZ.no)(b);
         document.getElementById("res").innerHTML='<p class="fb '+(ok?"ok":"no")+'">'+(ok?"○ 정답":"✕ 정답 "+번[x.a-1])+'</p>'+
           (x.h?'<details class="orig" open><summary style="cursor:pointer;color:var(--ink-3);font-weight:700">해설 원문</summary><img class="fig" style="margin-top:8px" src="'+x.h+'" alt="해설"></details>':'')+
-          '<button class="b main" style="margin-top:14px" id="nx">'+(i+1<xs.length?"다음":"결과")+'</button>';
+          '<button class="b main stickb" style="margin-top:14px" id="nx">'+(i+1<xs.length?"다음":"결과")+'</button>';
         document.getElementById("nx").onclick=function(){ i++; 그리기(); window.scrollTo({top:0}); };
       };
     });
@@ -57,4 +60,5 @@
   그리기();
 })();
 </script>
+<script src="js/zzsfx.js?v=1009a" defer></script><script src="js/zzajan.js?v=1009a" defer></script>
 </body></html>

@@ -108,6 +108,7 @@
   }
 
   function 그리기(){
+    window.ZZ && ZZ.quiet && ZZ.quiet(700);
     진행();
     if(i>=문장들.length) return 끝();
     var o=문장들[i], q=D.qs[o.q]||{}, t=GS.테마맵[o.k]||{};
@@ -147,6 +148,7 @@
     btn.classList.add("pick");
     document.querySelectorAll(".ox button").forEach(function(x){ if(Number(x.dataset.v)===o.a) x.classList.add("right"); });
     if(!ok) btn.classList.add("wrong");
+    if(window.ZZ) (ok ? ZZ.ok : ZZ.no)(btn);
     var 전=GS.S.ox[o.i];
     var 판=JUDGE.판정({ok:ok,conf:확신,ms:ms,attempt:전?전.n+1:1,qid:o.i,
       mastery:GS.숙련(o.k),streak:GS.연속오답(o.k),leafName:t.n});
@@ -164,7 +166,7 @@
         (q.h?'<details class="orig"'+(ok?'':' open')+'><summary>해설 원문</summary><img class="fig" style="margin-top:10px" src="'+q.h+'" alt="해설"></details>':'')+
         (q.x?'<details class="orig"><summary>시험지 원문 · 기출 정답 '+e(q.a)+'</summary><img class="fig" style="margin-top:10px" src="'+q.x+'" alt="기출"></details>':'')+
       '</div>'+
-      '<div class="next"><button class="b main" id="nx">'+다음+'</button>'+개념단추+'</div>';
+      '<div class="next stickb"><button class="b main" id="nx">'+다음+'</button>'+개념단추+'</div>';
     el("nx").onclick=function(){ i++; 그리기(); };
     el("vd").scrollIntoView({behavior:"smooth",block:"start"});
   }
@@ -185,8 +187,10 @@
           '<a class="b" href="card.html?k='+encodeURIComponent(k)+'">개념</a></div>':'')+
       '</div>';
     window.scrollTo({top:0,behavior:"smooth"});
+    if(window.ZZ && 결과.length){ ZZ.quiet && ZZ.quiet(800); var r=맞/결과.length; if(r>=1) ZZ.stars(3); else if(r>=0.7) ZZ.stars(2); else if(r>=0.4) ZZ.stars(1); }
   }
   그리기();
 })();
 </script>
+<script src="js/zzsfx.js?v=1009a" defer></script><script src="js/zzajan.js?v=1009a" defer></script>
 </body></html>

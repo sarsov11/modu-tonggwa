@@ -28,6 +28,9 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
   color:var(--ink);border-radius:var(--r3);padding:16px 18px;font:inherit;font-size:17px;
   font-weight:800;text-decoration:none;cursor:pointer}
 .b.main{background:var(--accent);border-color:var(--accent);color:#fff}
+.stickb{position:sticky;bottom:calc(56px + env(safe-area-inset-bottom,0px));z-index:15}
+.b.stickb{box-shadow:0 6px 18px rgba(0,0,0,.16)}
+.next.stickb{padding:10px 0 8px;background:linear-gradient(to top,var(--bg) 80%,transparent)}
 .b:active{transform:translateY(1px)}
 .b2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 .b2 .b{font-size:15.5px;padding:14px 10px;font-weight:700}

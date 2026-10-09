@@ -100,11 +100,13 @@
   }
   function 기록(맞){ 내.p[지금]=맞?1:0; 쓰기(R); }
   function 다음(){
+    window.ZZ && ZZ.quiet && ZZ.quiet(700);
     if(지금+1>=줄.length){ 끝(); return; }
     지금++; 그리기(); window.scrollTo({top:0});
   }
   function 끝(){
     var 맞=Object.keys(내.p).filter(function(i){ return 내.p[i]; }).length;
+    if(window.ZZ && 줄.length){ var r=맞/줄.length; if(r>=1) ZZ.stars(3); else if(r>=0.7) ZZ.stars(2); else if(r>=0.4) ZZ.stars(1); }
     몸.innerHTML='<div class="endbox"><div class="big num">'+맞+' / '+줄.length+'</div><p>'+e(주.n)+' 한 바퀴 끝</p>'+
       '<a class="b main" id="again">처음부터 다시</a><a class="b" href="drill.html" style="margin-top:10px">다른 유형</a></div>'+도구();
     document.getElementById("again").onclick=function(){ 내.p={}; 쓰기(R); 지금=0; 그리기(); window.scrollTo({top:0}); };
@@ -117,10 +119,11 @@
         var n=Number(b.dataset.n);
         host.querySelectorAll(".pick5 button").forEach(function(x){ x.disabled=true; if(Number(x.dataset.n)===a) x.classList.add("ok"); });
         if(n!==a) b.classList.add("no");
+        if(window.ZZ) (n===a ? ZZ.ok : ZZ.no)(b);
         기록(n===a);
         host.querySelector(".res").innerHTML='<p class="fb '+(n===a?"ok":"no")+'">'+(n===a?"○ 정답":"✕ 정답 "+번[a-1])+'</p>'+
           (해설?'<details class="fold"><summary>해설</summary><div class="in"><img class="fig" src="'+해설+'" alt="해설"></div></details>':'')+
-          '<a class="b main" id="nx" style="margin-top:12px">'+(지금+1>=줄.length?"결과 보기":"다음 문제")+'</a>';
+          '<a class="b main stickb" id="nx" style="margin-top:12px">'+(지금+1>=줄.length?"결과 보기":"다음 문제")+'</a>';
         document.getElementById("nx").onclick=다음;
       };
     });
@@ -170,4 +173,5 @@
   그리기();
 })();
 </script>
+<script src="js/zzsfx.js?v=1009a" defer></script><script src="js/zzajan.js?v=1009a" defer></script>
 </body></html>
