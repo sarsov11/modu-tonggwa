@@ -76,7 +76,8 @@
   document.getElementById("week").innerHTML = w.n
     ? '<div class="row"><span>푼 문장</span><b>'+w.n+'개</b></div>'+
       '<div class="row"><span>정답률</span><b>'+Math.round(w.ok*100/w.n)+'%</b></div>'
-    : '<div class="row"><span>시작 전</span></div>';
+    : '<div class="row"><span>푼 문장</span><b>0개</b></div>'+
+      '<div class="row"><span>정답률</span><b>—</b></div>';
   var 성=GS.과목성적(), 줄="";
   Object.keys(성).forEach(function(s){
     var a=성[s], p=a.푼?Math.round(a.맞*100/a.푼):null;
@@ -85,5 +86,4 @@
   document.getElementById("subj").innerHTML=줄||'<div class="row"><span>시작 전</span></div>';
 })();
 </script>
-<script src="js/zzsfx.js?v=1009a" defer></script><script src="js/zzajan.js?v=1009a" defer></script>
 </body></html>

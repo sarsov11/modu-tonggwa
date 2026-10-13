@@ -28,9 +28,6 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
   color:var(--ink);border-radius:var(--r3);padding:16px 18px;font:inherit;font-size:17px;
   font-weight:800;text-decoration:none;cursor:pointer}
 .b.main{background:var(--accent);border-color:var(--accent);color:#fff}
-.stickb{position:sticky;bottom:calc(56px + env(safe-area-inset-bottom,0px));z-index:15}
-.b.stickb{box-shadow:0 6px 18px rgba(0,0,0,.16)}
-.next.stickb{padding:10px 0 8px;background:linear-gradient(to top,var(--bg) 80%,transparent)}
 .b:active{transform:translateY(1px)}
 .b2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
 .b2 .b{font-size:15.5px;padding:14px 10px;font-weight:700}
@@ -56,9 +53,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 @media(max-width:520px){ .b{font-size:16px} }
 
 /* ── 모두의 통과 — 서문 책자 진녹(#3A6036)을 강조색으로. 오답만 빨강(통사 규칙) ── */
-:root,:root[data-skin]{--accent:#3A6036;--tg-gold:#E6CC84;--tg-beige:#FCF8EA;--tg-soft:#EAF0E6}
-:root:not([data-skin]){--accent:#8BC17F;--tg-soft:rgba(139,193,127,.14);--tg-beige:rgba(230,204,132,.10)}
+:root,:root[data-skin]:not([data-skin="night"]){--accent:#3A6036;--tg-gold:#E6CC84;--tg-beige:#FCF8EA;--tg-soft:#EAF0E6}
+:root:not([data-skin]),:root[data-skin="night"]{--accent:#8BC17F;--tg-soft:rgba(139,193,127,.14);--tg-beige:rgba(230,204,132,.10)}
 .gbar i{background:var(--tg-gold);outline:3px solid var(--accent)}
+:root:not([data-skin]) .b.main,:root[data-skin="night"] .b.main,:root:not([data-skin]) .kt thead th,:root[data-skin="night"] .kt thead th,:root:not([data-skin]) .kx i,:root[data-skin="night"] .kx i{color:#0c1a09}
 
 /* 개념 · 드릴 칸 (kan.js) */
 .kh{font-size:17px;margin:26px 0 10px;letter-spacing:-.02em;display:flex;gap:8px;align-items:center}
