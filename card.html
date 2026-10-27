@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/g.css">
+<link rel="stylesheet" href="css/diagram.css">
 <script>try{var _s=localStorage.getItem("modutg2.skin")||"white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
 <style>
   .hd h1{font-size:26px;letter-spacing:-.03em;margin:26px 0 4px;font-weight:900}
@@ -33,6 +34,8 @@
 <script src="js/gdata.js"></script>
 <script src="js/gstore.js"></script>
 <script src="js/kan.js"></script>
+<script src="js/diagram.js"></script>
+<script src="js/dosik.js"></script>
 <script>
 (function(){
   GS.내비("card.html");
@@ -42,7 +45,9 @@
     var t=GS.테마맵[k]||{};
     document.getElementById("ttl").textContent=t.n||k;
     document.getElementById("sub").textContent=(t.p||"")+" · "+(t.h||"");
-    몸.innerHTML=KAN.그리기(D.cards[k].칸)+
+    /* 줄글 「줄」 칸은 도식이 있으면 도식으로 — 줄 글이 도식을 만들 때와 같을 때만(js/dosik.js) */
+    var 칸들=(D.cards[k].칸||[]).map(function(c,i){ var o=(window.TG_DOSIK||{})[k+"#"+i]; return (c.꼴==="줄"&&o&&JSON.stringify(o.줄)===JSON.stringify(c.줄))?{꼴:"도식",블록:o.도식}:c; });
+    몸.innerHTML=KAN.그리기(칸들)+
       '<div class="go"><a class="b main" href="ox.html?k='+encodeURIComponent(k)+'">O·X</a>'+
       '<div class="b2"><a class="b" href="gichul.html?k='+encodeURIComponent(k)+'">기출 원문</a>'+
       '<a class="b" href="card.html">다른 단원 학습</a></div></div>';
@@ -63,7 +68,6 @@
   }).join("");
 })();
 </script>
-<script src="js/zzsfx.js?v=1009a" defer></script><script src="js/zzajan.js?v=1009a" defer></script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
 <style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:12.5px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
 </body></html>

@@ -80,6 +80,8 @@
         답칸(c.답.map(function (z) { return esc(z[0]) + " → " + esc(z[1]); }).join("<br>"));
     }
   };
+  /* 도식(2026-10-27 대표님 「모든 과목 개념을 도식으로」) — 줄글 「줄」 칸을 js/dosik.js 의 도식으로 바꾼 칸 */
+  꼴.도식 = function (c) { return window.DIAGRAM ? (c.블록 || []).map(DIAGRAM.html).join("") : ""; };
   function 그리기(칸들) {
     return (칸들 || []).map(function (c) { return (꼴[c.꼴] || function () { return ""; })(c); }).join("");
   }
