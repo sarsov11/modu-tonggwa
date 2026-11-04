@@ -86,14 +86,15 @@
     return '<div class="qc"><div class="q-hd"><span class="q-no">'+d["번호"]+'</span><span class="q-src">'+(출처||"")+'</span>'+(d["배점"]?'<span class="q-pt">'+d["배점"]+'점</span>':'')+'</div>'+
       몸(d["몸"], d["단폭"])+보+선지(d)+'</div>';
   }
+  var 묶캐시={};   // 문항 구조는 20묶음 q/bNN.json(낱 파일 1,500개는 GitHub Pages 빌드가 못 견딤, 1105)
+  function 묶음(k){ var n=("0"+k).slice(-2); return 묶캐시[n]||(묶캐시[n]=fetch("q/b"+n+".json").then(function(r){ if(!r.ok) throw 0; return r.json(); })); }
   function 넣기(자리){
     var 크롭=자리.getAttribute("data-img"), 출처=자리.getAttribute("data-y")||"";
     var id=(크롭.match(/([^\/]+)\.webp$/)||[])[1], 있음=window.QC_IDS||{};
-    var 옛='<img class="q-fig" src="'+크롭+'" alt="기출 문항">';
-    if(!id || !있음[id]){ 자리.innerHTML=옛; return; }
+    var 옛='<img class="fig" src="'+크롭+'" alt="기출 문항">';
+    if(!id || !(id in 있음)){ 자리.innerHTML=옛; return; }
     꾸밈();
-    fetch("q/"+id+".json").then(function(r){ if(!r.ok) throw 0; return r.json(); })
-      .then(function(d){ 자리.innerHTML=다듬(카드(d, 출처)); })
+    묶음(있음[id]).then(function(b){ var d=b[id]; if(!d) throw 0; 자리.innerHTML=다듬(카드(d, 출처)); })
       .catch(function(){ 자리.innerHTML=옛; });
   }
   /* QC.칸(크롭주소, 출처) → 자리 HTML,  QC.채우기(뿌리) → 자리마다 카드(없으면 원래 크롭) */
