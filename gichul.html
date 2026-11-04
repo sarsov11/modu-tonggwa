@@ -21,6 +21,8 @@
   <div id="body"></div>
 </div>
 <script src="js/gdata.js"></script>
+<script src="js/qids.js"></script>
+<script src="js/qcard.js"></script>
 <script src="js/gstore.js"></script>
 <script>
 (function(){
@@ -47,9 +49,10 @@
     }
     var x=xs[i];
     몸.innerHTML='<div class="prog"><span>'+(i+1)+' / '+xs.length+'</span><span>'+e(x.y)+'</span></div>'+
-      '<img class="fig" src="'+x.img+'" alt="기출">'+
+      QC.칸(x.img)+
       '<div class="pick5">'+[1,2,3,4,5].map(function(n){return '<button data-n="'+n+'">'+번[n-1]+'</button>';}).join("")+'</div>'+
       '<div id="res"></div>';
+    QC.채우기(몸);
     몸.querySelectorAll(".pick5 button").forEach(function(b){
       b.onclick=function(){
         var n=Number(b.dataset.n), ok=(n===x.a); if(ok) 맞++;

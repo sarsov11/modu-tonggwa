@@ -58,6 +58,8 @@
 <script src="js/gstore.js"></script>
 <script src="js/kan.js"></script>
 <script src="js/drillhint.js"></script>
+<script src="js/qids.js"></script>
+<script src="js/qcard.js"></script>
 <script>
 (function(){
   GS.내비("drill.html");
@@ -132,9 +134,10 @@
   function 그리기(){
     var it=줄[지금], d=it.d;
     if(it.kind==="모음"){
-      몸.innerHTML=진행()+'<p class="qsrc">기출, '+e(d.y)+'</p><img class="fig" src="'+d.img+'" alt="기출 문항">'+
+      몸.innerHTML=진행()+'<p class="qsrc">기출, '+e(d.y)+'</p>'+QC.칸(d.img)+
         (순서.length?'<div id="hb" style="margin-top:12px"><a class="b" id="hint">힌트, 풀이 순서</a></div>':'')+
         '<p class="pick-lb">답 고르기</p><div id="pk"></div>'+도구();
+      QC.채우기(몸);
       var hb=document.getElementById("hint");
       if(hb) hb.onclick=function(){ document.getElementById("hb").innerHTML='<div class="hint">'+KAN.그리기(순서)+'</div>'; };
       고르기(document.getElementById("pk"), 정답번호(d.a), d.h);
@@ -142,8 +145,9 @@
     }
     /* 단계 풀이 문제 — 걸음을 하나씩 */
     var 힌=(힌트[주.k]||[])[it.j]||[], g=0;
-    몸.innerHTML=진행()+'<p class="qsrc">단계 풀이, '+e(d.y)+'</p>'+(d.img?'<img class="fig" src="'+d.img+'" alt="기출 문항">':'')+
+    몸.innerHTML=진행()+'<p class="qsrc">단계 풀이, '+e(d.y)+'</p>'+(d.img?QC.칸(d.img):'')+
       '<div id="past"></div><div id="cur"></div>'+도구();
+    QC.채우기(몸);
     function 걸음(){
       var cur=document.getElementById("cur");
       if(g>=d.걸음.length){
