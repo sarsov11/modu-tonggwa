@@ -70,6 +70,11 @@
   document.getElementById("go").href=가기;
   document.getElementById("concept").href=개념;
   if(!(D.cards||{})[할&&할.k]) document.getElementById("concept").href="card.html";
+  /* 11-06 대표님: 개념 없이 O·X 부터 금지 — 이 단원 개념이 있으면 큰 단추가 개념, 옆 단추가 O·X */
+  else if(할.종류!=="복습"){
+    document.getElementById("coach").innerHTML="<em>"+e(할.이름)+"</em> 개념"+"<small>"+e(할.t.s)+" · "+e(할.t.p||"")+(할.종류==="약점"?" · 약점":"")+"</small>";
+    document.getElementById("go").href=개념; document.getElementById("concept").href=가기; document.getElementById("concept").textContent="O·X";
+  }
 
   /* 기록 — 접어 둔다. 홈에 숫자를 늘어놓지 않는다 */
   var w=GS.이번주();

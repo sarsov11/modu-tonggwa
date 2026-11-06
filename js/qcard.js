@@ -7,7 +7,7 @@
   '@font-face{font-family:QCM;src:url(css/fonts/KaTeX_Math-Italic.woff2) format("woff2")}'+
   '.qc i{font-family:QCM,serif;font-style:normal;font-size:1.08em}.qc sub,.qc sup{font-size:.72em;line-height:0}'+
   '.qc .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;line-height:1.15;margin:0 2px}.qc .frac>span:first-child{border-bottom:1px solid currentColor;padding:0 2px}'+
-  '.qc u{text-underline-offset:3px}'+
+  '.qc u{text-underline-offset:3px}.qc .qb{display:inline-block;border:1px solid currentColor;padding:0 .9em;line-height:1.3;margin:0 1px}'+
   '.qc .q-hd{display:flex;align-items:center;gap:8px;margin-bottom:8px}.qc .q-no{background:#2F6B3A;color:#fff;font-weight:800;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}'+
   '.qc .q-src{font-size:12px;color:#7a8a7a;font-weight:600}.qc .q-pt{margin-left:auto;font-size:12px;color:#2F6B3A;font-weight:700;border:1px solid #2F6B3A;border-radius:10px;padding:0 7px}'+
   '.qc .q-p{margin:0 0 6px}.qc .q-ask{font-weight:700}'+
