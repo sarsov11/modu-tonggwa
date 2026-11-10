@@ -254,3 +254,8 @@ html body .pan,html body .card{border:1px solid #E6E8EC;box-shadow:none}
 html body .zs-fab{display:none!important}
 .tdt button{font-size:14px}
 .tdt .sum span{font-size:13px}
+/* 합격 지도 3판: 긴 단원 이름은 줄바꿈(잘리지 않게) */
+html body .tm .tm-l{height:auto;min-height:28px;padding-top:6px;padding-bottom:6px}
+html body .tm .tm-l span{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25;word-break:keep-all;overflow-wrap:anywhere}
+html body .tm .tm-dt .tm-t,html body .tm .tm-t{height:auto;min-height:52px;padding-top:9px;padding-bottom:9px}
+html body .tm .tm-t .tm-nm{white-space:normal;display:block;overflow:visible;-webkit-line-clamp:unset;line-height:1.25;word-break:keep-all}
