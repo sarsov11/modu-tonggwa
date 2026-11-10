@@ -72,11 +72,40 @@
     d.addEventListener("click", function (e) { if (pop && !e.target.closest(".tq-conf,.tq-bar")) closePop(); });
     return api;
   };
+  /* 안내 말풍선은 아래 줄 단추 위에 뜬다. 작은 폰에서는 그 자리에 O · X · 선지 단추가 있어 가렸다(11-10).
+     → 말풍선을 화면에 고정하고, 단추와 겹치면 문제 화면을 그만큼 올려 단추가 말풍선 위에 보이게 한다.
+     그림이 늦게 뜨면 단추 자리가 바뀌므로 여러 번(그림 로드 · 크기 변경 때도) 다시 잰다. */
+  function 겹치지않게(c) {
+    if (!c) return c;
+    var top0 = parseFloat(c.style.top) || 0, base = null;
+    c.style.position = "fixed"; c.style.top = (top0 - window.scrollY) + "px";
+    function 재기() {
+      if (!c.isConnected) return;
+      if (base === null) base = document.body.style.paddingBottom;
+      document.body.style.paddingBottom = base; window.scrollTo(0, 0);
+      var a = c.getBoundingClientRect(), 가림 = 0;
+      [].slice.call(document.querySelectorAll(".tq-ox button,button.o,button.x,.tq-choice,.opt,.pick5 button")).forEach(function (b) {
+        var q = b.getBoundingClientRect();
+        if (q.width > 1 && !(a.right <= q.left || a.left >= q.right || a.bottom <= q.top || a.top >= q.bottom)) 가림 = Math.max(가림, q.bottom - a.top + 12);
+      });
+      if (가림 > 0) {
+        var now = parseFloat(getComputedStyle(document.body).paddingBottom) || 0;
+        document.body.style.paddingBottom = (now + 가림) + "px";
+        window.scrollTo(0, 가림);
+      }
+    }
+    function 끝() { document.body.style.paddingBottom = base === null ? "" : base; window.scrollTo(0, 0); window.removeEventListener("resize", 재기); document.removeEventListener("load", 재기, true); }
+    [].slice.call(c.querySelectorAll("button")).forEach(function (bt) { bt.addEventListener("click", function () { setTimeout(끝, 0); }, true); });
+    [300, 900, 1800].forEach(function (ms) { setTimeout(재기, ms); });
+    window.addEventListener("resize", 재기); document.addEventListener("load", 재기, true);
+    return c;
+  }
   TQ.coach = function (bar) {
     if (!window.TERA_Q) return;
     var c = bar.el.querySelector('[data-t="conf"]'), p = bar.el.querySelector('[data-t="pen"]');
-    if (c) TERA_Q.coach(c, { key: "conf", title: "헷갈림을 표시할 수 있어요", text: "누르면 반반이나 찍었어요를 고를 수 있어요. 안 누르면 확실로 기록돼요.",
-      onDone: function () { if (p) TERA_Q.coach(p, { key: "pen", title: "문제 위에 바로 쓸 수 있어요", text: "펜을 누르고 문제 위에 풀이를 적어 보세요." }); } });
-    else if (p) TERA_Q.coach(p, { key: "pen", title: "문제 위에 바로 쓸 수 있어요", text: "펜을 누르고 문제 위에 풀이를 적어 보세요." });
+    var 펜 = { key: "pen", title: "문제 위에 바로 쓸 수 있어요", text: "펜을 누르고 문제 위에 풀이를 적어 보세요." };
+    if (c) 겹치지않게(TERA_Q.coach(c, { key: "conf", title: "헷갈림을 표시할 수 있어요", text: "누르면 반반이나 찍었어요를 고를 수 있어요. 안 누르면 확실로 기록돼요.",
+      onDone: function () { if (p) 겹치지않게(TERA_Q.coach(p, 펜)); } }));
+    else if (p) 겹치지않게(TERA_Q.coach(p, 펜));
   };
 })();

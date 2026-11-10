@@ -13,9 +13,9 @@
   /* 2026-11-10 문제 화면 — tera-q 공용 부품(css/tera-q.css) + 앱 덧붙임(g.css 끝) */
   .hd{display:none}
   .tq-pos{cursor:pointer}
-  .tq-exp-box .fb{font-size:15px;font-weight:800;margin:0 0 10px}
+  .tq-exp-box .fb{font-size:16px;font-weight:800;margin:0 0 10px}
   .tq-exp-box .fb.ok{color:#0F7B4F}.tq-exp-box .fb.no{color:#E5322D}
-  .tq-exp-box .fig{display:block;width:100%;border:1px solid var(--line-2);border-radius:8px;margin-top:8px}
+  .tq-exp-box .fig{display:block;width:100%;border:1px solid var(--line-2);border-radius:12px;margin-top:8px}
   .tq-exp-box summary{cursor:pointer;color:var(--ink-3);font-weight:700}
   .tq-wrap .qc{margin:0 0 18px}
   .tq-omr .tq-omr-row{cursor:pointer}
@@ -94,7 +94,7 @@
     if(바) 바.hide(); 판.style.display="none"; document.getElementById("tqw").classList.remove("has-omr");
     if(window.TERA_PAD&&TERA_PAD.penHide) TERA_PAD.penHide();
     var 맞=xs.filter(function(x,j){ return ans[j]===x.a; }).length;
-    몸.innerHTML='<div class="none"><b style="font-size:22px;color:var(--ink)">'+맞+' / '+xs.length+'</b></div>'+
+    몸.innerHTML='<div class="none"><b style="font-size:20px;color:var(--ink)">'+맞+' / '+xs.length+'</b></div>'+
       '<a class="b main" href="ox.html?k='+encodeURIComponent(k)+'">O·X</a>';
   }
   function 그리기(){
@@ -136,5 +136,5 @@
 })();
 </script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
-<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:12.5px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
+<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:13px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
 </body></html>

@@ -3,24 +3,24 @@
  * QC.칸 + QC.채우기 — 구조가 있으면 카드, 없으면 원래 크롭 그림. */
 (function(){
   var 원="①②③④⑤";
-  var css='.qc{background:#fff;color:#1d1f1c;border:1px solid var(--line-2,#dfe5dc);border-radius:var(--r2,14px);padding:16px 16px 14px;font-family:"Pretendard Variable",Pretendard,sans-serif;font-size:15px;line-height:1.62;font-weight:500;word-break:keep-all;overflow-wrap:anywhere}'+
+  var css='.qc{background:#fff;color:#1d1f1c;border:1px solid var(--line-2,#dfe5dc);border-radius:var(--r2,14px);padding:16px 16px 14px;font-family:"Pretendard Variable",Pretendard,sans-serif;font-size:16px;line-height:1.62;font-weight:500;word-break:keep-all;overflow-wrap:anywhere}'+
   '@font-face{font-family:QCM;src:url(css/fonts/KaTeX_Math-Italic.woff2) format("woff2")}'+
   '.qc i{font-family:QCM,serif;font-style:normal;font-size:1.08em}.qc sub,.qc sup{font-size:.72em;line-height:0}'+
   '.qc .frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:.86em;line-height:1.15;margin:0 2px}.qc .frac>span:first-child{border-bottom:1px solid currentColor;padding:0 2px}'+
   '.qc u{text-underline-offset:3px}.qc .qb{display:inline-block;border:1px solid currentColor;padding:0 .9em;line-height:1.3;margin:0 1px}'+
   '.qc .q-hd{display:flex;align-items:center;gap:8px;margin-bottom:8px}.qc .q-no{background:#2F6B3A;color:#fff;font-weight:800;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}'+
-  '.qc .q-src{font-size:12px;color:#7a8a7a;font-weight:600}.qc .q-pt{margin-left:auto;font-size:12px;color:#2F6B3A;font-weight:700;border:1px solid #2F6B3A;border-radius:10px;padding:0 7px}'+
+  '.qc .q-src{font-size:11.5px;color:#7a8a7a;font-weight:600}.qc .q-pt{margin-left:auto;font-size:11.5px;color:#2F6B3A;font-weight:700;border:1px solid #2F6B3A;border-radius:12px;padding:0 7px}'+
   '.qc .q-p{margin:0 0 6px}.qc .q-ask{font-weight:700}'+
-  '.qc .q-box{border:1.4px solid #c9d6c6;background:#f7faf6;border-radius:10px;padding:8px 12px;margin:8px 0}.qc .q-box .q-p:last-child{margin-bottom:0}'+
+  '.qc .q-box{border:1.4px solid #c9d6c6;background:#f7faf6;border-radius:12px;padding:8px 12px;margin:8px 0}.qc .q-box .q-p:last-child{margin-bottom:0}'+
   '.qc .q-bogi{position:relative;border:1.6px solid #2F6B3A;border-radius:12px;padding:16px 14px 8px;margin:16px 0 10px}'+
   '.qc .q-bogi .q-lab{margin:0;position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#fff;padding:0 10px;color:#2F6B3A;font-weight:800;font-size:13px}'+
   '.qc .q-bi{display:flex;gap:6px;margin:2px 0}.qc .q-bi b{color:#2F6B3A;flex:none}'+
-  '.qc .q-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.qc .q-ch>span{border:1px solid #d5ded3;border-radius:16px;padding:2px 10px;font-size:14px}'+
+  '.qc .q-ch{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.qc .q-ch>span{border:1px solid #d5ded3;border-radius:14px;padding:2px 10px;font-size:14px}'+
   '.qc .q-ch.q-long{flex-direction:column;gap:4px}.qc .q-ch.q-long>span{border:0;border-radius:0;padding:0}'+
   '.qc .q-fig{text-align:center;margin:8px auto;max-width:100%}.qc .q-fig img{width:100%;display:block}.qc .q-fig .q-cap{font-size:13px;margin-top:2px}'+
   '.qc .q-figrow{display:flex;justify-content:center;gap:10px;align-items:flex-end}.qc .q-figrow .q-fig{margin:8px 0}'+
   '.qc .q-wrap{display:flow-root}.qc .q-wrap .q-fig.q-side{float:right;margin:2px 0 4px 10px}'+
-  '.qc table.q-cht{border-collapse:collapse;margin:8px auto 0;font-size:14.5px;min-width:70%}.qc table.q-cht th{font-weight:700;color:#2F6B3A;padding:2px 12px;border-bottom:1.4px solid #2F6B3A}'+
+  '.qc table.q-cht{border-collapse:collapse;margin:8px auto 0;font-size:14px;min-width:70%}.qc table.q-cht th{font-weight:700;color:#2F6B3A;padding:2px 12px;border-bottom:1.4px solid #2F6B3A}'+
   '.qc table.q-cht td{padding:3px 12px;text-align:center;border-bottom:1px solid #edf1ec}.qc table.q-cht td:first-child{color:#2F6B3A;font-weight:700;padding-left:4px}'+
   '.qc .q-chg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 6px;margin-top:8px}.qc .q-chg div{display:flex;gap:4px;align-items:flex-start}.qc .q-chg b{color:#2F6B3A;flex:none}.qc .q-chg img{width:100%;min-width:0}'+
   '@media(max-width:380px){.qc .q-wrap .q-fig.q-side{float:none;margin:8px auto;width:80%!important}}';

@@ -12,29 +12,29 @@
   /* 2026-11-10 화면표준 3절 — 날짜 줄 → D-day → 오늘 카드(+시작) → 숫자 두 칸 → 출석 → 목록 */
   .dtl{padding:18px 2px 14px}
   .dtl small{display:block;font-size:13px;font-weight:600;color:var(--ink-4)}
-  .dtl h1{font-size:30px;line-height:1.15;font-weight:900;letter-spacing:-.04em;margin:6px 0 0;color:var(--ink)}
+  .dtl h1{font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.04em;margin:6px 0 0;color:var(--ink)}
   .dtl h1 .exg{font-size:13px;font-weight:700;color:var(--ink-4);letter-spacing:0;margin-left:6px}
   .today{padding:20px 18px 18px}
-  .today h2{font-size:20px;font-weight:900;letter-spacing:-.03em;margin:0;color:var(--ink)}
-  .today .sum{font-size:13.5px;font-weight:600;color:var(--ink-3);margin:4px 0 0;line-height:1.5}
+  .today h2{font-size:20px;font-weight:800;letter-spacing:-.03em;margin:0;color:var(--ink)}
+  .today .sum{font-size:14px;font-weight:600;color:var(--ink-3);margin:4px 0 0;line-height:1.5}
   .steps{list-style:none;margin:14px 0 16px;padding:0;display:grid;gap:6px}
   .steps li{border-radius:14px}
   .steps li a{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:8px 10px;text-decoration:none;color:inherit}
   .steps li.now{background:var(--pt-soft)}
   .steps .c{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--surface-3);color:var(--ink-3);font:800 14px/1 inherit}
   .steps li.now .c{background:var(--pt);color:#fff}
-  .steps b{display:block;font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .steps small{display:block;font-size:12.5px;font-weight:600;color:var(--ink-3);margin-top:2px;line-height:1.4}
+  .steps b{display:block;font-size:16px;font-weight:800;letter-spacing:-.02em;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .steps small{display:block;font-size:13px;font-weight:600;color:var(--ink-3);margin-top:2px;line-height:1.4}
   .steps .tm{font-size:13px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
   .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
   .stat{padding:16px 18px}
-  .stat b{display:block;font-size:22px;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink)}
-  .stat span{display:block;font-size:12.5px;font-weight:600;color:var(--ink-3);margin-top:2px}
+  .stat b{display:block;font-size:20px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .stat span{display:block;font-size:13px;font-weight:600;color:var(--ink-3);margin-top:2px}
   .att{padding:16px 18px;margin:0 0 12px}
   .att h3{font-size:16px;font-weight:800;margin:0 0 12px;letter-spacing:-.02em}
   .days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
-  .days span{font-size:12px;font-weight:700;color:var(--ink-3)}
-  .days i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin:6px auto 0;background:var(--surface-3);font-style:normal;font:800 12px/1 inherit;color:var(--ink-4)}
+  .days span{font-size:11.5px;font-weight:700;color:var(--ink-3)}
+  .days i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin:6px auto 0;background:var(--surface-3);font-style:normal;font:800 11.5px/1 inherit;color:var(--ink-4)}
   .days .on i{background:var(--pt);color:#fff} .days .td i{box-shadow:0 0 0 2px var(--pt-line)}
   .links{display:grid;gap:10px;margin:0 0 6px}
   .links a{display:grid;grid-template-columns:1fr 32px;gap:12px;align-items:center;padding:14px 16px;text-decoration:none;color:var(--ink)}
@@ -42,7 +42,7 @@
   .links small{display:block;font-size:13px;font-weight:600;color:var(--ink-3);margin-top:2px}
   .links .ar{width:32px;height:32px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;color:var(--ink-3)}
   .links .ar svg{width:16px;height:16px}
-  .sr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15px}
+  .sr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:16px}
   .sr:first-child{border-top:0}
   .sr b{font-variant-numeric:tabular-nums}
 </style>
@@ -117,7 +117,8 @@
   var 화살='<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></svg></span>';
   document.getElementById("small").innerHTML=
     '<a class="pan" href="tree.html"><div><b>합격 지도</b><small>단원을 골라 기출 O·X</small></div>'+화살+'</a>'+
-    '<a class="pan" href="drill.html"><div><b>드릴</b><small>풀이 틀 · 단계 쪼개기 · 기출 모음</small></div>'+화살+'</a>';
+    '<a class="pan" href="drill.html"><div><b>드릴</b><small>풀이 틀 · 단계 쪼개기 · 기출 모음</small></div>'+화살+'</a>'+
+    '<a class="pan" href="#" data-zs="1"><div><b>합격 전략</b></div>'+화살+'</a>';
 
   var 성=GS.과목성적(), 칸="";
   Object.keys(성).forEach(function(s){
@@ -128,7 +129,7 @@
 })();
 </script>
 <!-- 합격전략 브리핑(공용 zzstrat) -->
-<script src="js/zzstrat.js?v=3247d7fa"></script><script src="js/zzstrat_tonggwa.js?v=1de21921"></script><script>ZZSTRAT.auto("tonggwa");</script>
+<script src="js/zzstrat.js?v=3247d7fa"></script><script src="js/zzstrat_tonggwa.js?v=1de21921"></script><script>ZZSTRAT.auto("tonggwa",{fab:false});</script><script src="js/zzstrat_cover.js"></script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
-<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:12.5px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
+<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:13px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
 </body></html>

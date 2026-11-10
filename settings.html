@@ -10,14 +10,15 @@
 <script>try{var _s=localStorage.getItem("modutg2.skin")||"white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
 <style>
   /* 2026-11-10 화면표준 5절 — 쪽 제목 26px · 묶음마다 판 · 고르는 단추 44px */
-  .hd h1{font-size:26px;letter-spacing:-.03em;margin:22px 0 16px;font-weight:900}
+  .hd h1{font-size:26px;letter-spacing:-.03em;margin:22px 0 16px;font-weight:800}
   .sk{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-  .fold .in .b{min-height:44px;height:44px;border-radius:12px;font-size:14.5px}
+  .fold .in .b{min-height:44px;height:44px;border-radius:12px;font-size:14px}
 </style>
 </head><body>
 <div class="page">
   <div class="hd"><h1>설정</h1></div>
   <details class="fold" open><summary>공부<span class="recpill">추천</span></summary><div class="in"><div id="tdt"></div></div></details>
+  <details class="fold" data-zs="1"><summary>합격 전략</summary></details>
   <details class="fold"><summary>시험일</summary><div class="in">
     <input type="date" id="exam">
   </div></details>
@@ -28,6 +29,7 @@
     <button class="b" id="reset">기록 전부 지우기</button>
   </div></details>
 </div>
+<script src="js/zzstrat.js"></script><script src="js/zzstrat_tonggwa.js"></script><script src="js/zzstrat_cover.js"></script>
 <script src="js/gdata.js"></script>
 <script src="js/gstore.js"></script>
 <script src="js/tera-daeip-time.js"></script>
@@ -55,5 +57,5 @@
 })();
 </script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
-<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:12.5px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
+<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:13px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
 </body></html>
