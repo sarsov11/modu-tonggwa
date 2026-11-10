@@ -2,11 +2,12 @@
 <html lang="ko"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>킬러 드릴 — 모두의 통과</title>
+<title>드릴 — 모두의 통과</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/g.css">
+<link rel="stylesheet" href="css/tera-q.css">
 <script>try{var _s=localStorage.getItem("modutg2.skin")||"white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
 <!-- 킬러 드릴 (2026-10-08 개편, 대표님 「눈으로 풀 수 없는 문항을 문제은행처럼 적어 놓으면 훈련이 안 됨.
      한 문제씩 단계별로 풀게 하되, 막히면 힌트」)
@@ -15,7 +16,7 @@
 <style>
   .hd h1{font-size:25px;letter-spacing:-.03em;margin:22px 0 6px;font-weight:900;line-height:1.3}
   .hd p{margin:0;color:var(--ink-3);font-size:14.5px;line-height:1.6}
-  .tag{display:inline-block;background:var(--tg-gold);color:#3A6036;font-weight:900;font-size:13.5px;
+  .tag{display:inline-block;background:var(--tg-gold);color:var(--pt-ink);font-weight:900;font-size:13.5px;
     padding:3px 8px;border-radius:6px;letter-spacing:.04em}
   .topic{display:block;border:1.5px solid var(--line-2);border-radius:var(--r3);padding:18px;margin-top:14px;
     text-decoration:none;color:inherit;background:var(--surface)}
@@ -49,8 +50,8 @@
   .endbox p{color:var(--ink-3);font-size:15px;margin:6px 0 20px}
 </style>
 </head><body>
-<div class="page">
-  <div class="hd"><h1 id="ttl">킬러 드릴</h1>
+<div class="page tq-wrap">
+  <div class="hd"><h1 id="ttl">드릴</h1>
     <p id="sub">고2 학평 · 수능 예비시행 2.5점</p></div>
   <div id="body"></div>
 </div>
@@ -60,9 +61,12 @@
 <script src="js/drillhint.js"></script>
 <script src="js/qids.js"></script>
 <script src="js/qcard.js"></script>
+<script src="js/tera-pad.js"></script>
+<script src="js/tera-q.js"></script>
+<script src="js/tq-tonggwa.js"></script>
 <script>
 (function(){
-  GS.내비("drill.html");
+  GS.내비("drill.html", new URLSearchParams(location.search).get("k")?{안:"드릴"}:undefined);
   var D=GS.D, e=GS.esc, P=new URLSearchParams(location.search), k=P.get("k");
   var 몸=document.getElementById("body"), 번="①②③④⑤";
   var 힌트=window.DRILL_HINT||{};
@@ -75,16 +79,19 @@
   var 주=(D.drill||[]).filter(function(d){return d.k===k;})[0];
   if(!주){
     var R0=읽기();
-    몸.innerHTML=(D.drill||[]).map(function(d){
+    var 추천i=-1; (D.drill||[]).some(function(d,i){ var r=R0[d.k]||{}; if(Object.keys(r.p||{}).length<d.단계.length+d.모음.length){ 추천i=i; return true; } });
+    if(추천i<0&&(D.drill||[]).length) 추천i=0;
+    몸.innerHTML=(D.drill||[]).map(function(d,i){
       var 수=d.단계.length+d.모음.length, r=R0[d.k]||{}, 푼=Object.keys(r.p||{}).length;
-      return '<a class="topic" href="drill.html?k='+encodeURIComponent(d.k)+'"><span class="tag">KILLER DRILL</span>'+
+      return '<a class="topic" href="drill.html?k='+encodeURIComponent(d.k)+'"><span class="tag">드릴</span>'+(i===추천i?'<span class="recpill">추천</span>':'')+
         '<b>'+e(d.n)+'</b><small>'+e(d.s)+', 단계 풀이 '+d.단계.length+'문제 + 기출 '+d.모음.length+'문제</small>'+
         '<div class="tbar"><i style="width:'+Math.round(푼/수*100)+'%"></i></div></a>';
     }).join("");
     return;
   }
   document.getElementById("ttl").textContent=주.n;
-  document.getElementById("sub").innerHTML='<span class="tag">KILLER DRILL</span> '+e(주.s);
+  var _g=document.getElementById("gtitle"); if(_g) _g.textContent=주.n;
+  document.getElementById("sub").innerHTML='<span class="tag">드릴</span> '+e(주.s);
 
   /* 문제 줄 — 단계 풀이 문제 먼저, 그다음 기출 모음 */
   var 줄=주.단계.map(function(d,j){ return {kind:"단계",j:j,d:d}; })
@@ -96,45 +103,61 @@
   function 도구(){
     return '<details class="fold tools"><summary>풀이 도구 (표)</summary><div class="in">'+KAN.그리기(주.틀)+'</div></details>';
   }
+  var 빈출=TQ.freq(), 바=null;
+  TQ.clock();
   function 진행(){
     var 푼=Object.keys(내.p).length;
-    return '<div class="prog"><span>'+(지금+1)+' / '+줄.length+'</span><div class="tr"><i style="width:'+Math.round(푼/줄.length*100)+'%"></i></div><span>'+푼+'문제 끝</span></div>';
+    return '<div class="tq-prog"><i><u style="width:'+Math.round(푼*100/줄.length)+'%"></u></i><span><b>'+Math.max(0,줄.length-푼)+'</b>문제 남았어요</span></div>';
+  }
+  function 메타(글){
+    return '<div class="tq-meta"><span class="tq-no">'+(지금+1)+'번 문제</span>'+(빈출[주.k]?'<span id="bd"></span>':'')+'<span class="tq-sp"></span><span class="tq-src">'+e(글)+'</span></div>';
   }
   function 기록(맞){ 내.p[지금]=맞?1:0; 쓰기(R); }
   function 다음(){
-    window.ZZ && ZZ.quiet && ZZ.quiet(700);
     if(지금+1>=줄.length){ 끝(); return; }
     지금++; 그리기(); window.scrollTo({top:0});
   }
   function 끝(){
+    if(바) 바.hide(); if(window.TERA_PAD&&TERA_PAD.penHide) TERA_PAD.penHide();
     var 맞=Object.keys(내.p).filter(function(i){ return 내.p[i]; }).length;
-    if(window.ZZ && 줄.length){ var r=맞/줄.length; if(r>=1) ZZ.stars(3); else if(r>=0.7) ZZ.stars(2); else if(r>=0.4) ZZ.stars(1); }
     몸.innerHTML='<div class="endbox"><div class="big num">'+맞+' / '+줄.length+'</div><p>'+e(주.n)+' 한 바퀴 끝</p>'+
       '<a class="b main" id="again">처음부터 다시</a><a class="b" href="drill.html" style="margin-top:10px">다른 유형</a></div>'+도구();
-    document.getElementById("again").onclick=function(){ 내.p={}; 쓰기(R); 지금=0; 그리기(); window.scrollTo({top:0}); };
+    document.getElementById("again").onclick=function(){ if(바) 바.el.style.display=""; 내.p={}; 쓰기(R); 지금=0; 그리기(); window.scrollTo({top:0}); };
   }
 
+  var 답함=false;
   function 고르기(host, a, 해설){
-    host.innerHTML='<div class="pick5">'+[1,2,3,4,5].map(function(n){return '<button data-n="'+n+'">'+번[n-1]+'</button>';}).join("")+'</div><div class="res"></div>';
+    host.innerHTML='<div class="pick5 tq-pick5">'+[1,2,3,4,5].map(function(n){return '<button data-n="'+n+'">'+번[n-1]+'</button>';}).join("")+'</div><div class="res"></div>';
     host.querySelectorAll(".pick5 button").forEach(function(b){
       b.onclick=function(){
         var n=Number(b.dataset.n);
         host.querySelectorAll(".pick5 button").forEach(function(x){ x.disabled=true; if(Number(x.dataset.n)===a) x.classList.add("ok"); });
         if(n!==a) b.classList.add("no");
-        if(window.ZZ) (n===a ? ZZ.ok : ZZ.no)(b);
         기록(n===a);
-        host.querySelector(".res").innerHTML='<p class="fb '+(n===a?"ok":"no")+'">'+(n===a?"○ 정답":"✕ 정답 "+번[a-1])+'</p>'+
-          (해설?'<details class="fold"><summary>해설</summary><div class="in"><img class="fig" src="'+해설+'" alt="해설"></div></details>':'')+
-          '<a class="b main stickb" id="nx" style="margin-top:12px">'+(지금+1>=줄.length?"결과 보기":"다음 문제")+'</a>';
-        document.getElementById("nx").onclick=다음;
+        host.querySelector(".res").innerHTML='<div class="tq-exp"><div class="tq-tabs"><button type="button" class="is-on">해설</button></div><div class="tq-exp-box">'+
+          '<p class="fb '+(n===a?"ok":"no")+'">'+(n===a?"○ 정답":"✕ 오답")+'</p>'+
+          (해설?'<details class="fold" open><summary>해설 원문</summary><div class="in"><img class="fig" src="'+해설+'" alt="해설"></div></details>':'')+
+          '<span class="tq-ans">정답 : '+a+'번</span></div></div>';
+        답함=true; 바.enable(true,true,지금>0);
+        몸.querySelector(".tq-prog").outerHTML=진행();
       };
     });
   }
 
   function 그리기(){
     var it=줄[지금], d=it.d;
+    답함=false;
+    if(!바){
+      바=TQ.bar({exp:true,pen:true,penKey:function(){return "dr"+주.k+"-"+지금;},canPrev:function(){return 지금>0;},
+        onPrev:function(){ if(지금>0){ 지금--; 그리기(); window.scrollTo({top:0}); } },
+        onNext:function(){ if(답함) 다음(); },
+        onExp:function(){ var r=몸.querySelector(".tq-exp"); if(r) r.scrollIntoView({behavior:"smooth",block:"start"}); }});
+      TQ.coach(바);
+    }
+    바.reset(); 바.setPos(지금+1,줄.length);
+    setTimeout(function(){ if(빈출[주.k]&&window.TERA_Q&&document.getElementById("bd")) TERA_Q.badge(document.getElementById("bd"),{stars:빈출[주.k]}); },0);
     if(it.kind==="모음"){
-      몸.innerHTML=진행()+'<p class="qsrc">기출, '+e(d.y)+'</p>'+QC.칸(d.img)+
+      몸.innerHTML=진행()+메타('기출, '+d.y)+QC.칸(d.img)+
         (순서.length?'<div id="hb" style="margin-top:12px"><a class="b" id="hint">힌트, 풀이 순서</a></div>':'')+
         '<p class="pick-lb">답 고르기</p><div id="pk"></div>'+도구();
       QC.채우기(몸);
@@ -145,7 +168,7 @@
     }
     /* 단계 풀이 문제 — 걸음을 하나씩 */
     var 힌=(힌트[주.k]||[])[it.j]||[], g=0;
-    몸.innerHTML=진행()+'<p class="qsrc">단계 풀이, '+e(d.y)+'</p>'+(d.img?QC.칸(d.img):'')+
+    몸.innerHTML=진행()+메타('단계 풀이, '+d.y)+(d.img?QC.칸(d.img):'')+
       '<div id="past"></div><div id="cur"></div>'+도구();
     QC.채우기(몸);
     function 걸음(){
@@ -158,12 +181,12 @@
       var s=d.걸음[g];
       cur.innerHTML='<div class="step"><div class="no">'+(g+1)+'단계 / '+d.걸음.length+'</div><div class="q">'+KAN.글(s[0])+'</div>'+
         '<div id="hs"></div><div id="as"></div>'+
-        '<div class="acts2" id="ab">'+(힌[g]?'<a class="b" id="hb">힌트</a>':'<span></span>')+'<a class="b main" id="sb">답 확인</a></div></div>';
+        '<div class="acts2" id="ab">'+(힌[g]?'<a class="b" id="hb">힌트</a>':'<span></span>')+'<a class="b main" id="sb">확정</a></div></div>';
       var hb=document.getElementById("hb");
       if(hb) hb.onclick=function(){ document.getElementById("hs").innerHTML='<div class="hint"><b>힌트</b> '+e(힌[g])+'</div>'; hb.style.visibility="hidden"; };
       document.getElementById("sb").onclick=function(){
         document.getElementById("as").innerHTML='<div class="ans">'+KAN.글(s[1])+'</div>';
-        document.getElementById("ab").innerHTML='<span></span><a class="b main" id="nb">'+(g+1>=d.걸음.length?"답 고르러 가기":"다음 단계")+'</a>';
+        document.getElementById("ab").innerHTML='<span></span><a class="b main" id="nb">'+(g+1>=d.걸음.length?"다음":"다음")+'</a>';
         document.getElementById("nb").onclick=function(){
           document.getElementById("past").insertAdjacentHTML("beforeend",
             '<div class="done-step"><b>'+(g+1)+'단계</b>'+KAN.글(s[0])+' → '+KAN.글(s[1])+'</div>');
@@ -177,9 +200,6 @@
   그리기();
 })();
 </script>
-<script src="js/zzsfx.js?v=1009a" defer></script><script src="js/zzajan.js?v=1009a" defer></script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
 <style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:12.5px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
-<script src="js/supa.config.js"></script>
-<script src="js/research.js" data-service="tonggwa"></script>
 </body></html>

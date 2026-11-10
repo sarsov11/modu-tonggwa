@@ -149,16 +149,37 @@
     return { n: n, ok: ok };
   }
 
-  /* ── 내비 — 위 브랜드 줄 + 아래 탭 ── */
-  function 내비(지금) {
-    var 탭 = [["index.html", "홈"], ["tree.html", "단원"], ["card.html", "개념"], ["drill.html", "킬러"], ["settings.html", "설정"]];
-    var 위 = '<header class="gbar"><a href="index.html"><i></i>모두의 ' + (D.별칭 || "") + '</a></header>';
-    var 아래 = '<nav class="gtabs">' + 탭.map(function (t) {
-      return '<a href="' + t[0] + '"' + (t[0] === 지금 ? ' class="on"' : '') + '>' + t[1] + '</a>';
+  /* ── 내비 — 위 머리띠 + 아래 탭 (2026-11-10 화면표준: 머리띠 56px · 표식 28px · 격자 단추 / 탭 62px · 아이콘 23px) ── */
+  var 그림 = {
+    "index.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4l8 7.2V19a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19z"/></svg>',
+    "quiz.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 3 5.5 13.4h5.6L10.2 21l8.3-10.6h-5.7z"/></svg>',
+    "tree.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="5.5" r="2.4"/><circle cx="6.5" cy="18.5" r="2.4"/><circle cx="17.5" cy="9.5" r="2.4"/><path d="M6.5 7.9v8.2M17.5 11.9c0 3.4-3.6 3.2-8.6 5.2"/></svg>',
+    "card.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.2 5 7.6 4.5 4.5 4.8v13c3.1-.3 5.7.2 7.5 1.7 1.8-1.5 4.4-2 7.5-1.7v-13c-3.1-.3-5.7.2-7.5 1.7zM12 6.5v13"/></svg>',
+    "settings.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 3.2v2.4M12 18.4v2.4M3.2 12h2.4M18.4 12h2.4M5.8 5.8l1.7 1.7M16.5 16.5l1.7 1.7M18.2 5.8l-1.7 1.7M7.5 16.5l-1.7 1.7"/></svg>',
+    "exam.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5 19.500V12M12 19.500V5M19 19.500V9"/></svg>',
+    "buy.html": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.2 5 7.6 4.5 4.5 4.8v13c3.1-.3 5.7.2 7.5 1.7 1.8-1.5 4.4-2 7.5-1.7v-13c-3.1-.3-5.7.2-7.5 1.7zM12 6.5v13"/></svg>',
+    grid: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2.2"/></svg>', back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"><path d="m14.5 5.5-6.5 6.5 6.5 6.5"/></svg>', close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg>'
+  };
+  function 내비(지금, 옵션) {
+    옵션 = 옵션 || {};
+    var 탭 = [["index.html", "오늘"], ["tree.html", "합격 지도"], ["card.html", "개념"], ["drill.html", "드릴"], ["settings.html", "설정"]];
+    var 탭그림 = { "drill.html": 그림["quiz.html"] };
+    var 위 = '<header class="gbar"><div class="gin">' +
+      '<div class="g-out"><a class="gb" href="index.html"><span class="mk">대</span><span class="nm">모두의 <em>대입</em></span><small class="sb">' + esc(D.종목 || "") + '</small></a>' +
+      '<nav class="gnav">' + 탭.map(function (t) { return '<a href="' + t[0] + '"' + (t[0] === 지금 ? ' class="on"' : '') + '>' + t[1] + '</a>'; }).join("") + '</nav>' +
+      '<a class="fam" href="https://teralearning.kr/" aria-label="테라러닝 전체 서비스">' + 그림.grid + '</a></div>' +
+      '<div class="g-in"><a class="bk" href="' + (옵션.뒤 || "index.html") + '" aria-label="뒤로">' + 그림.back + '</a><b class="gt" id="gtitle">' + esc(옵션.안 || "") + '</b><span class="gpr" id="gpr"></span><a class="xx" href="index.html" aria-label="닫기">' + 그림.close + '</a></div>' +
+      '</div></header>';
+    var 아래 = 옵션.탭 === false ? "" : '<nav class="gtabs" style="grid-template-columns:repeat(' + 탭.length + ',1fr)">' + 탭.map(function (t) {
+      return '<a href="' + t[0] + '"' + (t[0] === 지금 ? ' class="on" aria-current="page"' : '') + '>' + (탭그림[t[0]] || 그림[t[0]] || "") + '<span>' + t[1] + '</span></a>';
     }).join("") + '</nav>';
     document.body.insertAdjacentHTML("afterbegin", 위);
-    document.body.insertAdjacentHTML("beforeend", 아래);
+    if (옵션.안 !== undefined) document.body.classList.add("inner");
+    if (옵션.탭 === false || 옵션.안 !== undefined) document.body.classList.add("notab");
+    if (아래) document.body.insertAdjacentHTML("beforeend", 아래);
   }
+  /* 안쪽 화면(문제 풀이 등) 머리띠 제목·진행 「3 / 12」 */
+  function 진행표시(글) { var g = document.getElementById("gpr"); if (g) g.textContent = 글 || ""; }
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -169,7 +190,7 @@
     D: D, S: S, 오늘: 오늘, 테마맵: 테마맵, 테마별: 테마별, oxMap: oxMap, 순: 순,
     숙련: 숙련, 연속오답: 연속오답, 다시볼것: 다시볼것, 오늘할것: 오늘할것, 세션: 세션,
     기록: 기록, 카드봄: 카드봄, 디데이: 디데이, 과목성적: 과목성적, 이번주: 이번주,
-    내비: 내비, esc: esc, 저장: 쓰기,
+    내비: 내비, 진행표시: 진행표시, esc: esc, 저장: 쓰기,
     초기화: function () { try { localStorage.removeItem(KEY); } catch (e) {} }
   };
 })();

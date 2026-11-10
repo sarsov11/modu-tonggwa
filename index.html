@@ -9,92 +9,126 @@
 <link rel="stylesheet" href="css/g.css">
 <script>try{var _s=localStorage.getItem("modutg2.skin")||"white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
 <style>
-  .when{padding:24px 2px 0}
-  .when small{display:block;font-size:14.5px;color:var(--ink-3);font-weight:700}
-  .when h1{font-size:27px;letter-spacing:-.04em;margin:8px 0 0;font-weight:900}
-  .when h1 em{font-style:normal;color:var(--accent)}
-  .when hr{border:0;border-top:1px solid var(--line);margin:18px 0 0}
-  /* 코치 한 문장 — 통사 홈과 같다. 설명하지 않고 권한다 */
-  .coach{border:1.5px solid var(--line-2);border-radius:var(--r3);background:var(--surface);
-    padding:22px 22px;margin:22px 0 14px;font-size:19px;line-height:1.6;font-weight:700;
-    letter-spacing:-.02em}
-  .coach em{font-style:normal;color:var(--accent)}
-  .coach small{display:block;margin-top:8px;font-size:14.5px;color:var(--ink-3);font-weight:500}
+  /* 2026-11-10 화면표준 3절 — 날짜 줄 → D-day → 오늘 카드(+시작) → 숫자 두 칸 → 출석 → 목록 */
+  .dtl{padding:18px 2px 14px}
+  .dtl small{display:block;font-size:13px;font-weight:600;color:var(--ink-4)}
+  .dtl h1{font-size:30px;line-height:1.15;font-weight:900;letter-spacing:-.04em;margin:6px 0 0;color:var(--ink)}
+  .dtl h1 .exg{font-size:13px;font-weight:700;color:var(--ink-4);letter-spacing:0;margin-left:6px}
+  .today{padding:20px 18px 18px}
+  .today h2{font-size:20px;font-weight:900;letter-spacing:-.03em;margin:0;color:var(--ink)}
+  .today .sum{font-size:13.5px;font-weight:600;color:var(--ink-3);margin:4px 0 0;line-height:1.5}
+  .steps{list-style:none;margin:14px 0 16px;padding:0;display:grid;gap:6px}
+  .steps li{border-radius:14px}
+  .steps li a{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:8px 10px;text-decoration:none;color:inherit}
+  .steps li.now{background:var(--pt-soft)}
+  .steps .c{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--surface-3);color:var(--ink-3);font:800 14px/1 inherit}
+  .steps li.now .c{background:var(--pt);color:#fff}
+  .steps b{display:block;font-size:15px;font-weight:800;letter-spacing:-.02em;color:var(--ink);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .steps small{display:block;font-size:12.5px;font-weight:600;color:var(--ink-3);margin-top:2px;line-height:1.4}
+  .steps .tm{font-size:13px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .stat{padding:16px 18px}
+  .stat b{display:block;font-size:22px;font-weight:900;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .stat span{display:block;font-size:12.5px;font-weight:600;color:var(--ink-3);margin-top:2px}
+  .att{padding:16px 18px;margin:0 0 12px}
+  .att h3{font-size:16px;font-weight:800;margin:0 0 12px;letter-spacing:-.02em}
+  .days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+  .days span{font-size:12px;font-weight:700;color:var(--ink-3)}
+  .days i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;margin:6px auto 0;background:var(--surface-3);font-style:normal;font:800 12px/1 inherit;color:var(--ink-4)}
+  .days .on i{background:var(--pt);color:#fff} .days .td i{box-shadow:0 0 0 2px var(--pt-line)}
+  .links{display:grid;gap:10px;margin:0 0 6px}
+  .links a{display:grid;grid-template-columns:1fr 32px;gap:12px;align-items:center;padding:14px 16px;text-decoration:none;color:var(--ink)}
+  .links b{display:block;font-size:16px;font-weight:800;letter-spacing:-.02em}
+  .links small{display:block;font-size:13px;font-weight:600;color:var(--ink-3);margin-top:2px}
+  .links .ar{width:32px;height:32px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;color:var(--ink-3)}
+  .links .ar svg{width:16px;height:16px}
+  .sr{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:15px}
+  .sr:first-child{border-top:0}
+  .sr b{font-variant-numeric:tabular-nums}
 </style>
 </head><body>
 <div class="page">
-  <div class="when">
-    <small id="date"></small>
-    <h1 id="dd"></h1>
-    <hr>
+  <div class="dtl"><small id="date"></small><h1 id="dd"></h1></div>
+  <section class="pan today" id="today">
+    <h2 id="th">오늘</h2>
+    <p class="sum" id="ts"></p>
+    <ol class="steps" id="flow"></ol>
+    <a class="b main" id="go">시작</a>
+  </section>
+  <div class="two">
+    <div class="pan stat"><b id="n1">—</b><span>이번 주 정답률</span></div>
+    <div class="pan stat"><b id="n2">0</b><span>오늘 푼 문장</span></div>
   </div>
-  <div class="coach" id="coach"></div>
-  <a class="b main" id="go">시작</a>
-  <div class="b2">
-    <a class="b" id="concept">개념</a>
-    <a class="b" href="tree.html">다른 단원 학습</a>
-  </div>
-  <a class="b" href="drill.html" style="margin-top:10px">킬러 드릴 <span class="gc">강추</span></a>
-
-  <div class="lab">내 기록</div>
-  <details class="fold"><summary>이번 주</summary><div class="in" id="week"></div></details>
-  <details class="fold"><summary>과목별 정답률</summary><div class="in" id="subj"></div></details>
+  <section class="pan att"><h3>이번 주 출석</h3><div class="days" id="days"></div></section>
+  <div class="lab">다른 학습</div>
+  <div class="links" id="small"></div>
+  <div class="lab">과목별 정답률</div>
+  <div class="pan" style="padding:6px 18px 8px"><div id="subj"></div></div>
 </div>
 <script src="js/gdata.js"></script>
 <script src="js/gstore.js"></script>
+<script src="js/tera-daeip-time.js"></script>
 <script>
 (function(){
   GS.내비("index.html");
   var D=GS.D, e=GS.esc;
-  var 지금=new Date();
-  document.getElementById("date").textContent=(지금.getMonth()+1)+"월 "+지금.getDate()+"일";
+  var 지금=new Date(), 요일=["일","월","화","수","목","금","토"];
+  document.getElementById("date").textContent=D.종목+" · "+(지금.getMonth()+1)+"월 "+지금.getDate()+"일 "+요일[지금.getDay()]+"요일";
   var dd=GS.디데이();
-  document.getElementById("dd").innerHTML = e(D.종목)+" "+
-    (dd==null?"":"<em>"+(dd>0?"D-"+dd:(dd===0?"D-DAY":"시험 끝"))+"</em>");
+  document.getElementById("dd").innerHTML = dd==null ? e(D.종목)
+    : (dd>0?"D-"+dd:(dd===0?"D-DAY":"시험 끝"))+(GS.S.시험일?'<span class="exg">'+e(GS.S.시험일.replace(/-/g,"."))+'</span>':"");
 
-  /* 오늘 이거 하나 — 고르게 하지 않는다 */
-  var 할=GS.오늘할것(), 말="", 가기="tree.html", 개념="card.html";
+  /* 오늘 이거 하나 — 고르게 하지 않는다. 개념 없이 O·X 부터 금지(11-06): 이 단원 개념이 있으면 개념이 먼저, O·X 는 그다음 */
+  var 할=GS.오늘할것(), 단계=[], 가기="tree.html";
   if(!할){
-    말="문장 없음";
+    document.getElementById("ts").textContent="문장 없음";
   }else if(할.종류==="복습"){
-    말="<em>오답 모아풀기</em> "+할.n+"문장";
     가기="ox.html?review=1";
+    document.getElementById("ts").textContent="다시 볼 문장 "+할.n+"개";
+    단계.push(["복습 "+할.n+"문장","O·X","복습",가기]);
   }else{
-    var t=할.t;
-    말="<em>"+e(할.이름)+"</em> O·X"+
-       "<small>"+e(t.s)+" · "+e(t.p||"")+(할.종류==="약점"?" · 약점":"")+"</small>";
-    가기="ox.html?k="+encodeURIComponent(할.k);
-    개념="card.html?k="+encodeURIComponent(할.k);
+    var t=할.t, 뜻=e(t.s)+" · "+e(t.p||"")+(할.종류==="약점"?" · 약점":"");
+    var ox="ox.html?k="+encodeURIComponent(할.k), 개념="card.html?k="+encodeURIComponent(할.k);
+    document.getElementById("ts").textContent=할.이름+" · "+t.s+(할.종류==="약점"?" · 약점":"");
+    if((D.cards||{})[할.k]){ 단계.push([할.이름+" 개념",뜻,"개념",개념]); 단계.push([할.이름+" 기출 O·X",뜻,"기출",ox]); 가기=개념; }
+    else{ 단계.push([할.이름+" 기출 O·X",뜻,"기출",ox]); 가기=ox; }
   }
-  document.getElementById("coach").innerHTML=말;
+  단계.push(["드릴","풀이 틀 · 단계 쪼개기 · 기출 모음","드릴","drill.html"]);
+  document.getElementById("flow").innerHTML=단계.map(function(s,i){
+    return '<li'+(i===0?' class="now"':'')+'><a href="'+s[3]+'"><span class="c">'+(i+1)+'</span><div><b>'+e(s[0])+'</b><small>'+s[1]+'</small></div><span class="tm">'+s[2]+'</span></a></li>';
+  }).join("");
   document.getElementById("go").href=가기;
-  document.getElementById("concept").href=개념;
-  if(!(D.cards||{})[할&&할.k]) document.getElementById("concept").href="card.html";
-  /* 11-06 대표님: 개념 없이 O·X 부터 금지 — 이 단원 개념이 있으면 큰 단추가 개념, 옆 단추가 O·X */
-  else if(할.종류!=="복습"){
-    document.getElementById("coach").innerHTML="<em>"+e(할.이름)+"</em> 개념"+"<small>"+e(할.t.s)+" · "+e(할.t.p||"")+(할.종류==="약점"?" · 약점":"")+"</small>";
-    document.getElementById("go").href=개념; document.getElementById("concept").href=가기; document.getElementById("concept").textContent="O·X";
-  }
+  document.getElementById("th").textContent="오늘 "+TERA_DAEIP.fmt(TERA_DAEIP.perMin());
 
-  /* 기록 — 접어 둔다. 홈에 숫자를 늘어놓지 않는다 */
-  var w=GS.이번주();
-  document.getElementById("week").innerHTML = w.n
-    ? '<div class="row"><span>푼 문장</span><b>'+w.n+'개</b></div>'+
-      '<div class="row"><span>정답률</span><b>'+Math.round(w.ok*100/w.n)+'%</b></div>'
-    : '<div class="row"><span>푼 문장</span><b>0개</b></div>'+
-      '<div class="row"><span>정답률</span><b>—</b></div>';
-  var 성=GS.과목성적(), 줄="";
+  /* 숫자 두 칸 · 이번 주 출석 */
+  var w=GS.이번주(), S=GS.S, 오늘=GS.오늘();
+  document.getElementById("n1").textContent = w.n ? Math.round(w.ok*100/w.n)+"%" : "—";
+  document.getElementById("n2").textContent = ((S.날[오늘]||{}).n||0);
+  var 월=new Date(지금); 월.setDate(월.getDate()-((월.getDay()+6)%7));
+  var 줄="";
+  for(var i=0;i<7;i++){
+    var d=new Date(월); d.setDate(월.getDate()+i);
+    var 키=new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+    줄+='<div class="'+((S.날[키]&&S.날[키].n)?"on":"")+(키===오늘?" td":"")+'"><span>'+"월화수목금토일".charAt(i)+'</span><i>'+d.getDate()+'</i></div>';
+  }
+  document.getElementById("days").innerHTML=줄;
+
+  /* 다른 연습 */
+  var 화살='<span class="ar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></svg></span>';
+  document.getElementById("small").innerHTML=
+    '<a class="pan" href="tree.html"><div><b>합격 지도</b><small>단원을 골라 기출 O·X</small></div>'+화살+'</a>'+
+    '<a class="pan" href="drill.html"><div><b>드릴</b><small>풀이 틀 · 단계 쪼개기 · 기출 모음</small></div>'+화살+'</a>';
+
+  var 성=GS.과목성적(), 칸="";
   Object.keys(성).forEach(function(s){
     var a=성[s], p=a.푼?Math.round(a.맞*100/a.푼):null;
-    줄+='<div class="row"><span>'+e(s)+'</span><b>'+(p==null?"—":p+"%")+'</b></div>';
+    칸+='<div class="sr"><span>'+e(s)+'</span><b>'+(p==null?"—":p+"%")+'</b></div>';
   });
-  document.getElementById("subj").innerHTML=줄||'<div class="row"><span>시작 전</span></div>';
+  document.getElementById("subj").innerHTML=칸||'<div class="sr"><span>시작 전</span></div>';
 })();
 </script>
 <!-- 합격전략 브리핑(공용 zzstrat) -->
-<script src="js/zzstrat.js?v=3247d7fa"></script><script src="js/zzstrat_tonggwa.js?v=680c4a5b"></script><style>.gbar>.zs-btn{position:absolute!important;right:14px;top:50%;bottom:auto!important;transform:translateY(-50%)}@media(max-width:560px){.gbar>.zs-btn span{display:none}.gbar>.zs-btn{padding:6px!important}}</style><script>ZZSTRAT.auto("tonggwa",{fab:false});(function(){function f(){var b=ZZSTRAT.button("tonggwa",".gbar");if(b){b.classList.add("zs-fab");b.style.cssText="position:static;margin-left:0;padding:7px 11px;font-size:13px;flex:none"}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",f);else f()})();</script>
+<script src="js/zzstrat.js?v=3247d7fa"></script><script src="js/zzstrat_tonggwa.js?v=1de21921"></script><script>ZZSTRAT.auto("tonggwa");</script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
 <style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:12.5px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
-<script src="js/supa.config.js"></script>
-<script src="js/research.js" data-service="tonggwa"></script>
 </body></html>
