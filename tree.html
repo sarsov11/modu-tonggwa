@@ -20,7 +20,7 @@
 </div>
 <script src="js/gdata.js"></script>
 <script src="js/gstore.js"></script>
-<script src="js/tera-map.js?v=1110m"></script>
+<script src="js/tera-map.js?v=1110n"></script>
 <script>
 (function(){
   GS.내비("tree.html");
@@ -60,7 +60,7 @@
   function 가기(k){ return (D.cards||{})[k] ? "card.html?k="+encodeURIComponent(k) : "ox.html?k="+encodeURIComponent(k); }
   var dd=GS.디데이();
   TERA_MAP.mount(document.getElementById("m"),{
-    title:"합격 지도", sub:D.종목, unit:"기출 문항", dday: dd==null?"":(dd>0?"D-"+dd:(dd===0?"D-DAY":"시험 끝")),
+    title:"합격 지도", sub:D.종목, unit:"문항", dday: dd==null?"":(dd>0?"D-"+dd:(dd===0?"D-DAY":"시험 끝")),
     groups:groups, mark:"star",
     onLeaf:function(l){ location.href=가기(l.k); },
     onStart:function(n){
