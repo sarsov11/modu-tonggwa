@@ -51,10 +51,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 .none{padding:48px 10px;text-align:center;color:var(--ink-3);font-size:16px;line-height:1.8}
 @media(max-width:520px){ .b{font-size:16px} }
 
-/* ── 모두의 통과 — 서문 책자 진녹(#3A6036)을 강조색으로. 오답만 빨강(통사 규칙) ── */
-:root,:root[data-skin]:not([data-skin="night"]){--accent:#E5202E;--tg-gold:rgba(229,32,46,.38);--tg-beige:#F7F8FA;--tg-soft:rgba(229,32,46,.08)}
-:root:not([data-skin]),:root[data-skin="night"]{--accent:#FF6B73;--tg-soft:rgba(255,107,115,.14);--tg-beige:rgba(255,255,255,.04)}
-:root:not([data-skin]) .b.main,:root[data-skin="night"] .b.main,:root:not([data-skin]) .kt thead th,:root[data-skin="night"] .kt thead th,:root:not([data-skin]) .kx i,:root[data-skin="night"] .kx i{color:#0c1a09}
+/* ── 모두의 통과 — 청록 한 색(#0F766E)이 강조색. 오답만 빨강(통사 규칙). 2026-11-11 화면표준 16절 ── */
+:root,:root[data-skin]:not([data-skin="night"]){--accent:#0F766E;--tg-gold:rgba(15,118,110,.38);--tg-beige:#F7F8FA;--tg-soft:rgba(15,118,110,.08)}
+:root:not([data-skin]),:root[data-skin="night"]{--accent:#4DB6AC;--tg-soft:rgba(77,182,172,.14);--tg-beige:rgba(255,255,255,.04)}
+:root:not([data-skin]) .b.main,:root[data-skin="night"] .b.main,:root:not([data-skin]) .kt thead th,:root[data-skin="night"] .kt thead th,:root:not([data-skin]) .kx i,:root[data-skin="night"] .kx i{color:#06201d}
 
 /* 개념 · 드릴 칸 (kan.js) */
 .kh{font-size:16px;margin:26px 0 10px;letter-spacing:-.02em;display:flex;gap:8px;align-items:center}
@@ -100,13 +100,13 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 .pick5 button.no{border-color:var(--red);color:var(--red)}
 .gtabs a{font-size:14px}
 
-/* 0925 판정소 3차 확정 — 오답 #E5322D 통일 · 등급 칩 S노랑 A빨강 B파랑 C진회색 · 추천은 강추 알약 */
+/* 0925 판정소 3차 확정 — 오답 #E5322D 통일 · 등급 칩 청록 진하기(S 가장 진함 · A · B 옅음) C진회색(11-11) · 추천은 강추 알약 */
 :root,:root[data-skin]{--red:#E5322D}
-.chip.S{background:#FFD43B;border-color:#FFD43B;color:#1F2A1E}
-.chip.A{background:#E5322D;border-color:#E5322D;color:#fff}
-.chip.B{background:#2F6FDB;border-color:#2F6FDB;color:#fff}
+.chip.S{background:#0B4F4A;border-color:#0B4F4A;color:#fff}
+.chip.A{background:#0F766E;border-color:#0F766E;color:#fff}
+.chip.B{background:#A9D3CF;border-color:#A9D3CF;color:#0B4F4A}
 .chip.C{background:#4A4F55;border-color:#4A4F55;color:#fff}
-.gc{display:inline-block;margin-left:6px;background:#E5322D;color:#fff;font-size:11.5px;font-weight:800;
+.gc{display:inline-block;margin-left:6px;background:#0F766E;color:#fff;font-size:11.5px;font-weight:800;
   padding:2px 8px;border-radius:999px;vertical-align:2px}
 /* 폰 폭 — 넓은 도해·표는 가로로 밀어 본다(글자가 작아지거나 칸이 세로로 꺾이지 않게) */
 .kdw{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -114,14 +114,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 .kt td{min-width:76px}
 .kt tbody th{min-width:60px}
 
-/* ═══ 2026-11-10 화면표준 토큰 — 포인트 빨강 #E5202E(눌림 #C8101D). 오답 #E5322D · 정답 #16B364. 밤·종이 스킨도 크기·모양은 같다 ═══ */
+/* ═══ 2026-11-10 화면표준 토큰 — 포인트 청록 #0F766E(눌림 #0B5F59). 오답 #E5322D · 정답 #16B364. 밤·종이 스킨도 크기·모양은 같다 ═══ */
 :root,:root[data-skin]{--r1:10px;--r2:14px;--r3:18px;
   --sans:"Pretendard Variable",Pretendard,"Noto Sans KR","Malgun Gothic",system-ui,sans-serif;
   --pt:var(--accent);--pt-2:color-mix(in srgb,var(--accent) 86%,#000);
   --pt-soft:color-mix(in srgb,var(--accent) 10%,var(--surface));--pt-line:color-mix(in srgb,var(--accent) 45%,var(--surface));
   --pt-ink:color-mix(in srgb,var(--accent) 78%,var(--ink));--no:#E5322D;--ok:#16B364}
-:root[data-skin="white"]{--accent:#E5202E;--pt:#E5202E;--pt-2:#C8101D;--pt-soft:rgba(229,32,46,.10);--pt-line:rgba(229,32,46,.40);
-  --pt-ink:color-mix(in srgb,#E5202E 78%,#111419);--cta:var(--pt);--cta-2:var(--pt-2);--cta-soft:var(--pt-soft);--cta-ink:#fff}
+:root[data-skin="white"]{--accent:#0F766E;--pt:#0F766E;--pt-2:#0B5F59;--pt-soft:rgba(15,118,110,.10);--pt-line:rgba(15,118,110,.40);
+  --pt-ink:color-mix(in srgb,#0F766E 78%,#111419);--cta:var(--pt);--cta-2:var(--pt-2);--cta-soft:var(--pt-soft);--cta-ink:#fff}
 
 /* ═══ 2026-11-10 화면표준 — 머리띠 56 · 아래 탭 62 · 판 18 · 주 단추 54 (밤·종이 스킨도 크기·모양은 같다) ═══ */
 html,body{overflow-x:clip}   /* hidden 이면 body 가 스크롤 상자가 되어 sticky 머리띠가 안 붙는다 */
@@ -231,12 +231,12 @@ body.inner .tq-bar{z-index:45}
 .tq-box .fig{display:block;width:100%;border:0;border-radius:12px}
 .tq-stem img{max-width:100%;background:#fff}
 .tq-bar .tq-tool:disabled,.tq-bar .tq-nav:disabled{opacity:.4;cursor:default}
-.tq-conf{position:fixed;left:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:8px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 10px 26px rgba(15,23,42,.18)}
+.tq-conf{position:fixed;left:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:8px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 10px 26px rgba(18,48,45,.18)}
 .tq-conf button{height:36px;padding:0 14px;border-radius:999px;border:1px solid #D3D7DD;background:#fff;font:700 14px/1 inherit;color:#3A3F47;cursor:pointer}
 .tq-conf button.is-on{border-color:var(--pt);background:var(--pt-soft);color:var(--pt-ink)}
 .tq-exp-box .top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .tq-exp-box .mark{font-size:16px;font-weight:800}
-.tq-exp-box.good .mark{color:#0F7B4F}.tq-exp-box.bad .mark,.tq-exp-box.warn .mark{color:#E5322D}
+.tq-exp-box.good .mark{color:#16B364}.tq-exp-box.bad .mark,.tq-exp-box.warn .mark{color:#E5322D}
 .tq-exp-box .kind{font-size:13px;color:#5F6670;border:1px solid #E6E8EC;border-radius:999px;padding:2px 9px;font-weight:800}
 .tq-exp-box .say{margin:0;font-size:16px;line-height:28.8px;font-weight:500}
 .tq-exp-box .orig{margin-top:12px;padding-top:10px;border-top:1px solid #F1F3F5}
@@ -258,3 +258,50 @@ html body .zs-fab{display:none!important}
 html body .tm .tm-l{height:auto;min-height:28px;padding-top:6px;padding-bottom:6px}
 html body .tm .tm-l span{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.25;word-break:keep-all;overflow-wrap:anywhere}
 
+
+/* ═══ 2026-11-11 청록 단일톤 — 화면표준 16절(대표님 「다 청록색으로 통일하자」) ═══
+   포인트 #0F766E · 눌림 #0B5F59 · 진한 글씨 #0B4F4A · 옅은 바탕 #E3F2F0 · 테 #7FB8B2 · 먹색 #12302D · 선 #DCE7E5
+   정답 #16B364 · 오답 #E5322D 는 채점 표시에만. 구분은 진하기로만 한다.
+   base.css 는 통사 것을 통째로 복사해 오므로 여기서 덮는다. html:root 로 써야 base 의 :root[data-skin] 에 밀리지 않는다. */
+html:root,html:root[data-skin]{
+  --accent:#0F766E;--pt:#0F766E;--pt-2:#0B5F59;--pt-ink:#0B4F4A;--pt-soft:#E3F2F0;--pt-line:#7FB8B2;
+  --cta:#0F766E;--cta-2:#0B5F59;--cta-3:#0B4F4A;--cta-soft:#E3F2F0;--cta-line:#7FB8B2;--cta-ink:#fff;
+  --red-2:#0B5F59;--red-3:#0B4F4A;--red-soft:rgba(15,118,110,.08);--red-line:rgba(15,118,110,.40);
+  --mint:#0F766E;--mint-2:#0B5F59;--mint-soft:rgba(15,118,110,.10);--amber:#0B5F59;
+  --lv3:#0F766E;--core:#0F766E;--core-glow:#0F766E;--neb-1:rgba(15,118,110,.07);
+  --fam-geo:#0F766E;--fam-soc:#0B4F4A;--fam-eth:#7FB8B2;
+  --tg-gold:rgba(15,118,110,.38);--tg-soft:rgba(15,118,110,.08);
+  --tq-p:#0F766E;--tq-ink:#12302D;--tq-ink2:#2E4A47;--tq-sub:#52706C;--tq-line:#DCE7E5;--tq-fill:#EEF5F4;
+}
+html:root[data-skin="white"]{--ink:#12302D;--line:#DCE7E5;--tg-beige:#F6FAF9}
+html:root:not([data-skin]),html:root[data-skin="night"]{
+  --accent:#4DB6AC;--pt:#4DB6AC;--pt-2:#3A9D93;--pt-ink:#A9D3CF;--pt-soft:rgba(77,182,172,.14);--pt-line:rgba(77,182,172,.45);
+  --cta:#4DB6AC;--cta-2:#3A9D93;--cta-3:#2B7F77;--cta-soft:rgba(77,182,172,.14);--cta-line:rgba(77,182,172,.45);--cta-ink:#06201D;
+  --red-2:#7FB8B2;--red-3:#A9D3CF;--red-soft:rgba(77,182,172,.14);--red-line:rgba(77,182,172,.45);
+  --mint:#4DB6AC;--mint-2:#7FB8B2;--mint-soft:rgba(77,182,172,.14);--amber:#7FB8B2;
+  --lv3:#4DB6AC;--core:#4DB6AC;--core-glow:#4DB6AC;--fam-geo:#4DB6AC;--fam-soc:#7FB8B2;--fam-eth:#A9D3CF;
+  --tg-gold:rgba(77,182,172,.40);--tg-soft:rgba(77,182,172,.14);--tq-p:#4DB6AC;
+}
+/* 문제 화면 공용 부품(tera-q.css)에 박힌 슬레이트 푸른 회색 → 청록 기운의 회색 */
+html .tq-top b{color:#12302D}
+html .tq-stars i{color:#DCE7E5}
+html .tq-badge svg{color:#0F766E}
+html .tq-box{background:#F6FAF9}
+html .tq-bubble{color:#12302D;box-shadow:0 14px 34px -14px rgba(18,48,45,.45),0 0 0 1px #DCE7E5}
+html .tq-bubble::after{box-shadow:1px 1px 0 #DCE7E5}
+html .tq-bubble.is-below::after{box-shadow:-1px -1px 0 #DCE7E5}
+html .tq-ox button{border-color:#C5D6D3}
+html .tq-omr{border-color:#EDF5F4;box-shadow:0 10px 26px rgba(18,48,45,.07)}
+html .tq-coach{color:#2E4A47;box-shadow:0 18px 40px -16px rgba(18,48,45,.45),0 0 0 1px #DCE7E5}
+html .tq-coach p{color:#52706C}
+html .tq-coach-off{color:#7C9A96}
+html .tm-st{color:#DCE7E5}   /* 합격 지도 별(tera-map.js 안에 박힌 푸른 회색) */
+
+/* 밤 스킨도 청록 단일톤: 남색 바탕을 짙은 청록 먹색으로(11-11) */
+html:root:not([data-skin]),html:root[data-skin="night"]{
+  --bg:#0B1A18;--bg-1:#0B1A18;--bg-2:#0E211E;--surface:#102623;--surface-2:#142E2A;--surface-3:#1A3733;--card:#102623;--card-2:#142E2A;
+  --line:#1F3A36;--line-2:#2B4C47;--line-3:#3A625C;
+  --ink:#EAF4F2;--ink-1:#F2FAF8;--ink-2:#B5CFCA;--ink-3:#93B3AD;--ink-4:#86A8A2;
+  --nav-bg:rgba(11,26,24,.92);--stage:#0B1A18;--stage-2:#102623;--stage-line:#1F3A36;--stage-ink:#EAF4F2;--stage-ink-2:#93B3AD;
+  --citydim:#1F3A36;--axis:#2B4C47;--axis-ink:#52706C;--tq-ink:#EAF4F2;--tq-ink2:#B5CFCA;--tq-sub:#93B3AD;--tq-line:#1F3A36;--tq-fill:#142E2A;
+}

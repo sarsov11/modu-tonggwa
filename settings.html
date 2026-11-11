@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/g.css">
-<script>try{var _s=localStorage.getItem("modutg2.skin")||"white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
+<link rel="stylesheet" href="css/g.css?v=1111h">
+<script>try{var _s=localStorage.getItem("modutg2.skin")||"white";if(_s==="paper"||_s==="jelly")_s="white";document.documentElement.dataset.skin=_s;}catch(e){document.documentElement.dataset.skin="white";}</script>
 <style>
   /* 2026-11-10 화면표준 5절 — 쪽 제목 26px · 묶음마다 판 · 고르는 단추 44px */
   .hd h1{font-size:26px;letter-spacing:-.03em;margin:22px 0 16px;font-weight:800}
@@ -29,10 +29,10 @@
     <button class="b" id="reset">기록 전부 지우기</button>
   </div></details>
 </div>
-<script src="js/zzstrat.js"></script><script src="js/zzstrat_tonggwa.js"></script><script src="js/zzstrat_cover.js"></script>
+<script src="js/zzstrat.js?v=1111h"></script><script src="js/zzstrat_tonggwa.js"></script><script src="js/zzstrat_cover.js?v=1111h"></script>
 <script src="js/gdata.js"></script>
 <script src="js/gstore.js"></script>
-<script src="js/tera-daeip-time.js"></script>
+<script src="js/tera-daeip-time.js?v=1111h"></script>
 <script>
 (function(){
   GS.내비("settings.html");
@@ -40,8 +40,8 @@
   var x=document.getElementById("exam");
   x.value=GS.S.시험일||"";
   x.onchange=function(){ GS.S.시험일=x.value; GS.저장(); };
-  var 스킨=[["white","화이트"],["paper","종이"],["jelly","분홍"],["night","밤"]];
-  var 지금=localStorage.getItem("modutg2.skin")||"white";
+  var 스킨=[["white","화이트"],["night","밤"]];   /* 11-11 청록 단일톤: 종이·분홍은 다른 색 바탕이라 뺐다 */
+  var 지금=localStorage.getItem("modutg2.skin")||"white";if(지금==="paper"||지금==="jelly")지금="white";
   document.getElementById("skins").innerHTML=스킨.map(function(s){
     return '<button data-s="'+s[0]+'" aria-pressed="'+(s[0]===지금)+'">'+s[1]+'</button>';
   }).join("");
@@ -57,5 +57,5 @@
 })();
 </script>
 <!-- 테라러닝 홈 단추(공용 terrahome) -->
-<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:13px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=243c5cfd" data-slot=".gbar" defer></script>
+<style>.gbar>a.th-home{position:absolute;left:12px;top:50%;transform:translateY(-50%);margin:0;max-width:none;height:30px;padding:0 10px 0 7px;gap:5px;font-size:13px;display:inline-flex}@media(max-width:760px){.gbar>a:not(.th-home){padding-left:118px;padding-right:64px}}</style><script src="js/terrahome.js?v=1111h" data-slot=".gbar" defer></script>
 </body></html>
