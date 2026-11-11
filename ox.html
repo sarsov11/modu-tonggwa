@@ -29,6 +29,7 @@
 <script src="js/judge.js"></script>
 <script src="js/gstore.js"></script>
 <script src="js/tera-pad.js?v=1110p"></script>
+<script src="js/terms.js?v=1110t" onerror="void 0"></script>
 <script src="js/tera-q.js?v=1110p"></script>
 <script src="js/tq-tonggwa.js"></script>
 <script>
@@ -89,12 +90,13 @@
     el("stage").innerHTML=
       막대()+
       '<div class="tq-meta"><span class="tq-no">'+(i+1)+'번 문제</span>'+(빈출[o.k]?'<span id="bd"></span>':'')+
-        '<span class="tq-th">'+e(t.n||"")+'</span><span class="tq-sp"></span><span class="tq-src">'+e(q.y||"")+'</span></div>'+
+        '<span class="tq-th">'+e(t.n||"")+'</span><span class="tq-sp"></span><span class="tq-src">'+e(q.y||"")+'</span><span id="tqtg"></span></div>'+
       (q.f?'<div class="tq-box"><img class="fig" src="'+q.f+'" alt="자료"></div>':'')+
       '<p class="tq-stem">'+(o.ci?'<img src="'+o.ci+'" alt="보기">':(o.n?e(o.n)+'. ':'')+o.c)+'</p>'+
       '<div class="tq-ox" id="ox"><button type="button" class="o" data-v="1">O</button><button type="button" class="x" data-v="0">X</button></div>'+
       '<div id="vd"></div>';
     if(빈출[o.k]&&window.TERA_Q) TERA_Q.badge(el("bd"),{stars:빈출[o.k]});
+    if(window.TERA_Q){ TERA_Q.toggle(el("tqtg")); TERA_Q.annotate(document.querySelector("#stage .tq-stem")); }
     풀이창(document.querySelector("#stage .tq-stem"), document.querySelector("#stage .tq-ox"), "tg"+o.i);
     document.querySelectorAll("#ox button").forEach(function(b){
       b.onclick=function(){ if(!답함) 답하기(Number(b.dataset.v),b); };
