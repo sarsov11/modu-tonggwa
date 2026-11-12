@@ -77,6 +77,7 @@
      그림이 늦게 뜨면 단추 자리가 바뀌므로 여러 번(그림 로드 · 크기 변경 때도) 다시 잰다. */
   function 겹치지않게(c) {
     if (!c) return c;
+    if (c.classList.contains("tq-coach-flow")) return c;   // 11-12 끼워 넣은 띠는 그대로 둔다(고정 · 올리기 없음)
     var top0 = parseFloat(c.style.top) || 0, base = null;
     c.style.position = "fixed"; c.style.top = (top0 - window.scrollY) + "px";
     function 재기() {
