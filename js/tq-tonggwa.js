@@ -104,7 +104,7 @@
     if (!window.TERA_Q) return;
     var c = bar.el.querySelector('[data-t="conf"]'), p = bar.el.querySelector('[data-t="pen"]');
     var 펜 = { key: "pen", title: "문제 위에 바로 쓸 수 있어요", text: "펜을 누르고 문제 위에 풀이를 적어 보세요." };
-    if (c) 겹치지않게(TERA_Q.coach(c, { key: "conf", title: "헷갈림을 표시할 수 있어요", text: "누르면 반반이나 찍었어요를 고를 수 있어요. 안 누르면 확실로 기록돼요.",
+    if (c) 겹치지않게(TERA_Q.coach(c, { key: "conf", title: "헷갈림을 표시할 수 있어요", text: "누르면 반반이나 찍었어요를 고를 수 있어요.",
       onDone: function () { if (p) 겹치지않게(TERA_Q.coach(p, 펜)); } }));
     else if (p) 겹치지않게(TERA_Q.coach(p, 펜));
   };
