@@ -231,7 +231,7 @@ body.inner .tq-bar{z-index:45}
 .tq-box .fig{display:block;width:100%;border:0;border-radius:12px}
 .tq-stem img{max-width:100%;background:#fff}
 .tq-bar .tq-tool:disabled,.tq-bar .tq-nav:disabled{opacity:.4;cursor:default}
-.tq-conf{position:fixed;left:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:8px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 10px 26px rgba(18,48,45,.18)}
+.tq-conf{position:fixed;left:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:60;display:flex;gap:8px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 10px 26px rgba(17,20,25,.18)}
 .tq-conf button{height:36px;padding:0 14px;border-radius:999px;border:1px solid #D3D7DD;background:#fff;font:700 14px/1 inherit;color:#3A3F47;cursor:pointer}
 .tq-conf button.is-on{border-color:var(--pt);background:var(--pt-soft);color:var(--pt-ink)}
 .tq-exp-box .top{display:flex;align-items:center;gap:9px;margin-bottom:8px}
@@ -260,7 +260,7 @@ html body .tm .tm-l span{white-space:normal;overflow:visible;text-overflow:clip;
 
 
 /* ═══ 2026-11-11 청록 단일톤 — 화면표준 16절(대표님 「다 청록색으로 통일하자」) ═══
-   포인트 #0F766E · 눌림 #0B5F59 · 진한 글씨 #0B4F4A · 옅은 바탕 #E3F2F0 · 테 #7FB8B2 · 먹색 #12302D · 선 #DCE7E5
+   포인트 #0F766E · 눌림 #0B5F59 · 진한 글씨 #0B4F4A · 옅은 바탕 #E3F2F0 · 테 #7FB8B2 · 먹색 #111419 · 선 #E5E7EB
    정답 #16B364 · 오답 #E5322D 는 채점 표시에만. 구분은 진하기로만 한다.
    base.css 는 통사 것을 통째로 복사해 오므로 여기서 덮는다. html:root 로 써야 base 의 :root[data-skin] 에 밀리지 않는다. */
 html:root,html:root[data-skin]{
@@ -271,9 +271,9 @@ html:root,html:root[data-skin]{
   --lv3:#0F766E;--core:#0F766E;--core-glow:#0F766E;--neb-1:rgba(15,118,110,.07);
   --fam-geo:#0F766E;--fam-soc:#0B4F4A;--fam-eth:#7FB8B2;
   --tg-gold:rgba(15,118,110,.38);--tg-soft:rgba(15,118,110,.08);
-  --tq-p:#0F766E;--tq-ink:#12302D;--tq-ink2:#2E4A47;--tq-sub:#52706C;--tq-line:#DCE7E5;--tq-fill:#EEF5F4;
+  --tq-p:#0F766E;--tq-ink:#111419;--tq-ink2:#333941;--tq-sub:#5F6670;--tq-line:#E5E7EB;--tq-fill:#F4F5F7;
 }
-html:root[data-skin="white"]{--ink:#12302D;--line:#DCE7E5;--tg-beige:#F6FAF9}
+html:root[data-skin="white"]{--ink:#111419;--line:#E5E7EB;--tg-beige:#F6FAF9}
 html:root:not([data-skin]),html:root[data-skin="night"]{
   --accent:#4DB6AC;--pt:#4DB6AC;--pt-2:#3A9D93;--pt-ink:#A9D3CF;--pt-soft:rgba(77,182,172,.14);--pt-line:rgba(77,182,172,.45);
   --cta:#4DB6AC;--cta-2:#3A9D93;--cta-3:#2B7F77;--cta-soft:rgba(77,182,172,.14);--cta-line:rgba(77,182,172,.45);--cta-ink:#06201D;
@@ -283,19 +283,19 @@ html:root:not([data-skin]),html:root[data-skin="night"]{
   --tg-gold:rgba(77,182,172,.40);--tg-soft:rgba(77,182,172,.14);--tq-p:#4DB6AC;
 }
 /* 문제 화면 공용 부품(tera-q.css)에 박힌 슬레이트 푸른 회색 → 청록 기운의 회색 */
-html .tq-top b{color:#12302D}
-html .tq-stars i{color:#DCE7E5}
+html .tq-top b{color:#111419}
+html .tq-stars i{color:#E5E7EB}
 html .tq-badge svg{color:#0F766E}
 html .tq-box{background:#F6FAF9}
-html .tq-bubble{color:#12302D;box-shadow:0 14px 34px -14px rgba(18,48,45,.45),0 0 0 1px #DCE7E5}
-html .tq-bubble::after{box-shadow:1px 1px 0 #DCE7E5}
-html .tq-bubble.is-below::after{box-shadow:-1px -1px 0 #DCE7E5}
+html .tq-bubble{color:#111419;box-shadow:0 14px 34px -14px rgba(17,20,25,.45),0 0 0 1px #E5E7EB}
+html .tq-bubble::after{box-shadow:1px 1px 0 #E5E7EB}
+html .tq-bubble.is-below::after{box-shadow:-1px -1px 0 #E5E7EB}
 html .tq-ox button{border-color:#C5D6D3}
-html .tq-omr{border-color:#EDF5F4;box-shadow:0 10px 26px rgba(18,48,45,.07)}
-html .tq-coach{color:#2E4A47;box-shadow:0 18px 40px -16px rgba(18,48,45,.45),0 0 0 1px #DCE7E5}
-html .tq-coach p{color:#52706C}
+html .tq-omr{border-color:#EDF5F4;box-shadow:0 10px 26px rgba(17,20,25,.07)}
+html .tq-coach{color:#333941;box-shadow:0 18px 40px -16px rgba(17,20,25,.45),0 0 0 1px #E5E7EB}
+html .tq-coach p{color:#5F6670}
 html .tq-coach-off{color:#7C9A96}
-html .tm-st{color:#DCE7E5}   /* 합격 지도 별(tera-map.js 안에 박힌 푸른 회색) */
+html .tm-st{color:#E5E7EB}   /* 합격 지도 별(tera-map.js 안에 박힌 푸른 회색) */
 
 /* 밤 스킨도 청록 단일톤: 남색 바탕을 짙은 청록 먹색으로(11-11) */
 html:root:not([data-skin]),html:root[data-skin="night"]{
@@ -303,5 +303,5 @@ html:root:not([data-skin]),html:root[data-skin="night"]{
   --line:#1F3A36;--line-2:#2B4C47;--line-3:#3A625C;
   --ink:#EAF4F2;--ink-1:#F2FAF8;--ink-2:#B5CFCA;--ink-3:#93B3AD;--ink-4:#86A8A2;
   --nav-bg:rgba(11,26,24,.92);--stage:#0B1A18;--stage-2:#102623;--stage-line:#1F3A36;--stage-ink:#EAF4F2;--stage-ink-2:#93B3AD;
-  --citydim:#1F3A36;--axis:#2B4C47;--axis-ink:#52706C;--tq-ink:#EAF4F2;--tq-ink2:#B5CFCA;--tq-sub:#93B3AD;--tq-line:#1F3A36;--tq-fill:#142E2A;
+  --citydim:#1F3A36;--axis:#2B4C47;--axis-ink:#5F6670;--tq-ink:#EAF4F2;--tq-ink2:#B5CFCA;--tq-sub:#93B3AD;--tq-line:#1F3A36;--tq-fill:#142E2A;
 }

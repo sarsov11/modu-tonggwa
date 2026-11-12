@@ -73,7 +73,7 @@
     { n: 7, name: TXT.names[2], c1: "#0F766E", c2: "#5FA8A1" },
     { n: 10, name: TXT.names[3], c1: "#0B5F59", c2: "#3E948C" },
     { n: 15, name: TXT.names[4], c1: "#0B4F4A", c2: "#0F766E" },
-    { n: 20, name: TXT.names[5], c1: "#12302D", c2: "#7FB8B2" }
+    { n: 20, name: TXT.names[5], c1: "#111419", c2: "#7FB8B2" }
   ];
 
   var st = D.createElement("style"); st.id = "zz-style";

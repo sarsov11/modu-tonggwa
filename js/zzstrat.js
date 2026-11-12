@@ -66,7 +66,7 @@
   function modeName(m) { return { a: L.m_all, l: L.m_lite, g: L.m_guess }[m] || ""; }
 
   var css = [
-    "#zs,#zst,#zsy{--zs-bg:#F4F8F7;--zs-card:#FFFFFF;--zs-line:#DCE7E5;--zs-tx:#16181D;--zs-sub:#6B7080;--zs-red:#0F766E;--zs-blue:#3F4450;--zs-gold:#7C818C;--zs-soft:#EEF5F4}",
+    "#zs,#zst,#zsy{--zs-bg:#F4F8F7;--zs-card:#FFFFFF;--zs-line:#E5E7EB;--zs-tx:#16181D;--zs-sub:#6B7080;--zs-red:#0F766E;--zs-blue:#3F4450;--zs-gold:#7C818C;--zs-soft:#F4F5F7}",
     "#zs{position:fixed;inset:0;z-index:2147481000;background:var(--zs-bg);color:var(--zs-tx);overflow-y:auto;-webkit-overflow-scrolling:touch;",
     " font:500 15px/1.6 var(--zf);letter-spacing:-.01em;animation:zsIn .3s ease-out}",
     "@keyframes zsIn{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:none}}",
@@ -124,7 +124,7 @@
     "#zs .gp::after{content:'';position:absolute;left:50%;top:100%;margin-left:-1.5px;width:3px;height:52px;background:var(--zs-tx)}",
     "#zs .gb{--lw:92px;position:relative;padding-top:30px}",
     "#zs .gb .rw{display:flex;align-items:center;min-height:38px;padding:3px 0}#zs .gb .rn{flex:none;width:var(--lw);font-weight:700;font-size:12px;line-height:1.25;color:#4A4F5C;padding-right:8px;word-break:keep-all}",
-    "#zs .gb .tr{position:relative;flex:1;align-self:stretch;min-height:32px}#zs .gb .ln{position:absolute;left:0;right:0;top:50%;height:2px;background:#DCE7E5}",
+    "#zs .gb .tr{position:relative;flex:1;align-self:stretch;min-height:32px}#zs .gb .ln{position:absolute;left:0;right:0;top:50%;height:2px;background:#E5E7EB}",
     "#zs .gb .dt{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.08)}",
     "#zs .gb .dt s{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);text-decoration:none;font:800 12px/1 var(--zf);color:#4A4F5C;white-space:nowrap}",
     "#zs .gb .rw.ax{height:18px}#zs .gb .rw.ax s{position:absolute;top:0;text-decoration:none;font:700 12px/1 var(--zf);color:#A0A4AE}",
@@ -139,7 +139,7 @@
     /* 과목 카드 */
     "#zs .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}",
     "#zs .sc{position:relative;background:var(--zs-card);border:2px solid var(--zs-line);border-radius:16px;padding:14px 14px 12px;cursor:pointer;text-align:left;color:inherit;font:inherit;width:100%}",
-    "#zs .sc.s{border-color:color-mix(in srgb,var(--zs-red) 45%,transparent)}#zs .sc.d{border-color:rgba(18,48,45,.45)}#zs .sc.on{background:#F7FBFA}",
+    "#zs .sc.s{border-color:color-mix(in srgb,var(--zs-red) 45%,transparent)}#zs .sc.d{border-color:rgba(17,20,25,.45)}#zs .sc.on{background:#F7FBFA}",
     "#zs .sc .rb{position:absolute;top:12px;right:12px;font:800 12px/1 var(--zf);padding:5px 8px;border-radius:7px}",
     "#zs .sc.s .rb{background:var(--zs-red);color:#fff}#zs .sc.d .rb{background:var(--zs-blue);color:#fff}#zs .sc.b .rb{background:var(--zs-soft);color:#4A4F5C}",
     "#zs .sc .sn{font:800 16.5px/1.3 var(--zf);padding-right:56px;word-break:keep-all}",
