@@ -212,7 +212,7 @@ html body .zs-fab svg{color:var(--pt)}
 html body .qc .q-no{background:var(--pt)}
 html body .qc .q-pt{color:var(--pt-ink);border-color:var(--pt-line)}
 html body .qc .q-bogi{border-color:var(--pt-line)}
-html body .qc .q-bogi .q-lab,html body .qc .q-bi b,html body .qc .q-chg b,html body .qc table.q-cht td:first-child{color:var(--pt-ink)}
+html body .qc .q-bogi .q-lab,html body .qc .q-bi b{color:#111419} /* 11-12 보기 기호(ㄱ.ㄴ.ㄷ.)와 「보기」 제목은 문제 글이라 검정 */ html body .qc .q-chg b,html body .qc table.q-cht td:first-child{color:var(--pt-ink)}
 html body .qc table.q-cht th{color:var(--pt-ink);border-bottom-color:var(--pt-line)}
 html body .qc .q-box{border-color:var(--line-2);background:var(--surface-2)}
 
